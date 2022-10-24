@@ -1,9 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using Unity.Mathematics;
 using UnityEngine;
 
-public abstract class EnemySpawner
+public class EnemySpawner
 {
-    public abstract BaseEnemy Spawn(float2 pos,float2 dir);
+    public void Spawn(BaseEnemy enemy, float2 pos, float2 dir)
+    {
+        
+    }
 }

@@ -13,12 +13,12 @@ public abstract class BaseEnemy : MonoBehaviour
 
     private float _curHealth;
 
-    private void Start()
+    protected virtual void Start()
     {
         _curHealth = totalHealth;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         Move();
     }
