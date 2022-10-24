@@ -6,7 +6,7 @@ using UnityEngine;
 
 public abstract class BaseEnemy : MonoBehaviour
 {
-    public Category layer;
+    public Area area;
     
     public float totalHealth = 100;
     public float speed = 10;
