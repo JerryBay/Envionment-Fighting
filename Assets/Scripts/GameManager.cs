@@ -3,11 +3,11 @@
 public class GameManager : MonoBehaviour
 {
     public UIManager uiMgr;
-    private GlobalData _globalData;
+    private DataManager _globalData;
 
-    public void UpdateData(GlobalData data)
+    public void UpdateData()
     {
-        _globalData = data;
+        
     }
 
     public void UpdateUI()

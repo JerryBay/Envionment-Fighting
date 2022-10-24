@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public Text productivity;
+    public TextMeshProUGUI productivity;
 
-    public Text welfare;
+    public TextMeshProUGUI welfare;
 
-    public Text pollution;
+    public TextMeshProUGUI pollution;
 }

@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public struct GlobalData
+﻿
+public static class GlobalData
 {
-    public float productivity;
+    public static float economy;
 
-    public float welfare;
+    public static float pollution;
 
-    public float pollution;
+    public static float population;
+
 }
