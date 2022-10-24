@@ -1,18 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class BaseEnemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float speed = 10;
+    public float health = 100;
+    public float2[] wayPoints;
+    private int curIndex;
+
+    private void Start()
     {
-        
+        throw new NotImplementedException();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void Move()
     {
         
     }
+    
+    
 }
