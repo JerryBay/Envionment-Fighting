@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3595049340689986145}
   - component: {fileID: 3595049340689986150}
+  - component: {fileID: -8760487449008663744}
   m_Layer: 0
   m_Name: garbageBag
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3595049340689986151}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,3 +85,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-8760487449008663744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3595049340689986151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae20c8a2baa5fe34c97461fec5b1b82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  area: 1
+  totalHealth: 100
+  speed: 10
