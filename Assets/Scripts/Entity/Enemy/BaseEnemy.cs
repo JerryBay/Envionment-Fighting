@@ -25,19 +25,19 @@ public class BaseEnemy : MonoBehaviour
 
     private void Update()
     {
-        //Move();
+        Move();
     }
 
     private void Move()
     {
-        if (_pointIndex > _wayPoints.Count)
+        if (_pointIndex > _wayPoints.Count - 1)
         {
             return;
         }
         
         transform.Translate((_wayPoints[_pointIndex] - (Vector2)transform.position)
                             .normalized * Time.deltaTime * speed);
-        if (Vector2.Distance(_wayPoints[_pointIndex],transform.position) < 0.2f)
+        if (Vector2.Distance(_wayPoints[_pointIndex],transform.position) < 0.02f)
         {
             _pointIndex++;
         }

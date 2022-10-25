@@ -14,7 +14,7 @@ public class CreateTest : MonoBehaviour
 
     public Vector2 buildingPos;
 
-    public GameObject way;
+    public Route way;
 
     private void Start()
     {
@@ -24,18 +24,12 @@ public class CreateTest : MonoBehaviour
 
     public void GenBuilding()
     {
-        Vector2 pos = buildingPos;
-        int2 index =  GridManager.Instance.GetIndex(pos);
-        Vector2 modifiedPos = GridManager.Instance.GetPos(index);
-        //Debug.Log($"{worldPos} is {index}");
-        BuildingSpawner.Instance.Spawn(building, modifiedPos);
+        BuildingSpawner.Instance.Spawn(building, buildingPos);
     }
 
     public void GenEnemy()
     {
-        Route route = new Route();
-        route.GetWay(way);
-        EnemySpawner.Instance.Spawn(enemy,originPos,route);
+        EnemySpawner.Instance.Spawn(enemy,originPos,way);
     }
 
     // private void Update()

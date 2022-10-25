@@ -5,6 +5,8 @@ public class BuildingSpawner : SingletonMono<BuildingSpawner>
 {
     public void Spawn(BaseBuilding building,Vector2 pos)
     {
-        Instantiate(building, new Vector3(pos.x, pos.y, 0),Quaternion.identity);
+        int2 index = GridManager.Instance.GetIndex(pos);
+        Vector2 modifiedPos = GridManager.Instance.GetPos(index);
+        Instantiate(building, new Vector3(modifiedPos.x, modifiedPos.y, 0),Quaternion.identity);
     }
 }
