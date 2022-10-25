@@ -3,7 +3,7 @@ using Unity.Mathematics;
 
 public class BuildingSpawner : MonoBehaviour
 {
-    public void Spawn(BaseBuilding building,float2 pos)
+    public void Spawn(BaseBuilding building,int2 index)
     {
         
     }
