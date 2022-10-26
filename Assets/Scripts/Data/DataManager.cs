@@ -19,6 +19,8 @@ public class DataManager : SingletonMono<DataManager>
     public float polluteTotal = 0;
     public float evaluation = 0;
 
+    public int peopleDead = 0;
+
     private void Awake()
     {
         timer = new Timer();
@@ -41,6 +43,6 @@ public class DataManager : SingletonMono<DataManager>
     {
         oneMinute.Update();
         oneSecond.Update();
-        //evaluation = 50 + productivity * 10 - polluteTotal - 
+        evaluation = (50 + productivity * 10 - polluteRate * 2) /population * 1;
     }
 }
