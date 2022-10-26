@@ -8,7 +8,7 @@ public class GameScene : MonoBehaviour
     // 此类负责处理游戏场景中的事件
 
     private BuildingConfig buildingConfig;
-    private GameObject buindingGhost;
+    private SpriteRenderer buindingGhostSpr;
     private bool isSelectBuildingPosition; // 是否正在选择建筑放置位置
 
     private void Update()
@@ -21,12 +21,26 @@ public class GameScene : MonoBehaviour
         if (isSelectBuildingPosition)
         {
             Vector2 pos = GameGlobal.MainCamera.ScreenToWorldPoint(Input.mousePosition);
-            buindingGhost.transform.position = pos;
+            if (GridManager.Inst.DetectGridEnable(pos, out GameObject gridKey))
+            {
+                pos = gridKey.transform.position;
+                buindingGhostSpr.color = new Color(1, 1, 1, 1);
+            }
+            else
+            {
+                buindingGhostSpr.color = new Color(1, 1, 1, .4f);
+            }
+
+            buindingGhostSpr.transform.position = Vector2.Lerp(buindingGhostSpr.transform.position, pos, 0.5f);
+
             if (Input.GetMouseButtonDown(0))
             {
-                // todo 判定格子是否可用
-                BuildingManager.Instance.Spawn(buildingConfig,pos);
-                EventManager.Dispath(GameEvent.UI_SelectBuildingPlacePositionStop, true);
+                if (gridKey != null)
+                {
+                    BaseBuilding building = BuildingManager.Instance.Spawn(buildingConfig, pos);
+                    GridManager.Inst.BuildingSeize(gridKey, building);
+                    EventManager.Dispath(GameEvent.UI_SelectBuildingPlacePositionStop, true);
+                }
             }
             else if (Input.GetMouseButtonDown(1)) // 鼠标右键取消放置
             {
@@ -55,14 +69,16 @@ public class GameScene : MonoBehaviour
     {
         buildingConfig = (BuildingConfig) args[0];
         isSelectBuildingPosition = true;
-        if (buindingGhost == null)
+        if (buindingGhostSpr == null)
         {
-            buindingGhost = new GameObject($"buindingGhost-{buildingConfig.name}");
-            var spriteRenderer = buindingGhost.AddComponent<SpriteRenderer>();
-            spriteRenderer.sprite = buildingConfig.icon;
-            spriteRenderer.sortingOrder = 10;
-            spriteRenderer.drawMode = SpriteDrawMode.Sliced;
-            spriteRenderer.size = new Vector2(1, 1);
+            var obj = new GameObject($"buindingGhost-{buildingConfig.name}");
+            buindingGhostSpr = obj.AddComponent<SpriteRenderer>();
+            buindingGhostSpr.sprite = buildingConfig.icon;
+            buindingGhostSpr.sortingOrder = 10;
+            buindingGhostSpr.drawMode = SpriteDrawMode.Sliced;
+            buindingGhostSpr.size = new Vector2(1, 1);
+            Vector2 pos = GameGlobal.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+            obj.transform.position = pos;
         }
     }
 
@@ -70,8 +86,8 @@ public class GameScene : MonoBehaviour
     {
         buildingConfig = default;
         isSelectBuildingPosition = false;
-        if (buindingGhost != null)
-            GameObject.Destroy(buindingGhost);
+        if (buindingGhostSpr != null)
+            GameObject.Destroy(buindingGhostSpr.gameObject);
     }
 
     private void OnBuildingUpgradeEvent(object[] args)

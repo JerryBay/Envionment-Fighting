@@ -9,8 +9,9 @@ public class BuildingManager : SingletonMono<BuildingManager>
 
     public List<ProductionBuilding> prods = new List<ProductionBuilding>();
 
-    public void Spawn(BuildingConfig config, Vector2 pos)
+    public BaseBuilding Spawn(BuildingConfig config, Vector2 pos)
     {
         var inst = Instantiate(config.prefab, new Vector3(pos.x, pos.y, 0),Quaternion.identity);
+        return inst.GetComponent<BaseBuilding>();
     }
 }

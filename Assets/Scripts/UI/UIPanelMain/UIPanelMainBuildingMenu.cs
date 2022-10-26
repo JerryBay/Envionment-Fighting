@@ -84,7 +84,9 @@ public class UIPanelMainBuildingMenu : MonoBehaviour
 
     private void OnSelectBuildingPlacePositionStopEvent(object[] args)
     {
-        buildAnimator.Play("TempShow");
+        if ((bool) args[0])
+            buildAnimator.Play("TempoShowOnlyButton");
+        else buildAnimator.Play("TempShow");
     }
 
     public void OnProductionButtonClick()
