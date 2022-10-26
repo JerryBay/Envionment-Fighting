@@ -16,4 +16,7 @@ public static class GameDef
         {(int) GameStage.Success, new[] {"UIPanelMain"}},
         {(int) GameStage.Failure, new[] {"UIPanelMain"}},
     };
+    
+    // 格子单位大小
+    public static Vector2 gridSize => new Vector2(1.12f, 1.12f);
 }

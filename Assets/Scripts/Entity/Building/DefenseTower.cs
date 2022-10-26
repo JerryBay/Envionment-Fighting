@@ -10,8 +10,9 @@ public class DefenseTower : BaseBuilding
     public List<BaseEnemy> enemies = new List<BaseEnemy>();
     private float _timer = 0;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         BuildingManager.Instance.towers.Add(this);
     }
 
@@ -25,13 +26,15 @@ public class DefenseTower : BaseBuilding
         }
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
         GridManager.Inst.BuildingRelease(this);
         if (BuildingManager.Instance.towers.Contains(this))
         {
             BuildingManager.Instance.towers.Remove(this);
         }
+
+        base.OnDestroy();
     }
 
     private void UpdateEnemies()
@@ -78,7 +81,7 @@ public class DefenseTower : BaseBuilding
 
         if (enemies.Count > 0)
         {
-            Ammo bullet = Instantiate(defenseBuildingConfig.ammo,transform);
+            Ammo bullet = Instantiate(defenseBuildingConfig.ammo, transform);
             bullet.damage = defenseBuildingConfig.damage;
             bullet.speed = defenseBuildingConfig.ammoSpeed;
             bullet.type = defenseBuildingConfig.attackType;

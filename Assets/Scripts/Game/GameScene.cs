@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameScene : MonoBehaviour
@@ -45,6 +46,20 @@ public class GameScene : MonoBehaviour
             else if (Input.GetMouseButtonDown(1)) // 鼠标右键取消放置
             {
                 EventManager.Dispath(GameEvent.UI_SelectBuildingPlacePositionStop, false);
+            }
+        }
+        else // 木有在放置过程的话就可以点击呼出建筑菜单
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Vector2 pos = GameGlobal.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+                RaycastHit2D hitInfo = Physics2D.Raycast(pos, Vector2.right, 0.001f, 1 << LayerUtility.Click);
+                if (hitInfo.collider != null)
+                {
+                    BaseBuilding building = hitInfo.collider.GetComponentInParent<BaseBuilding>();
+                    if (building != null)
+                        UIManager.Inst.OpenUIPanel<UIPanelInfo>().ShowBuildingInfo(building);
+                }
             }
         }
     }
@@ -95,8 +110,25 @@ public class GameScene : MonoBehaviour
         BaseBuilding building = args[0] as BaseBuilding;
         if (building != null)
         {
-            // todo 升级建筑
-            Debug.Log("升级建筑");
+            BuildingConfig nextLevel;
+            if (building is ProductionBuilding)
+                nextLevel = (building as ProductionBuilding).productionBuildingConfig.nextLevel;
+            else if (building is DefenseTower)
+                nextLevel = (building as DefenseTower).defenseBuildingConfig.nextLevel;
+            else return;
+
+            if (nextLevel == null) // 不能继续升级了
+                return;
+
+            // todo 判定货币是否足够
+            Vector2 pos = building.transform.position;
+            building.DestroySelf(); // 销毁当前的
+            if (GridManager.Inst.DetectGridEnable(pos, out GameObject gridKey))
+            {
+                BaseBuilding b = BuildingManager.Instance.Spawn(buildingConfig, pos);
+                GridManager.Inst.BuildingSeize(gridKey, b);
+                EventManager.Dispath(GameEvent.UI_BuildingUpgradeComplate);
+            }
         }
     }
 
@@ -105,8 +137,9 @@ public class GameScene : MonoBehaviour
         BaseBuilding building = args[0] as BaseBuilding;
         if (building != null)
         {
-            // todo 拆除建筑
-            Debug.Log("拆除建筑");
+            // 拆除建筑不需要任何条件
+            building.DestroySelf();
+            EventManager.Dispath(GameEvent.UI_BuildingRemoveComplate);
         }
     }
 }
