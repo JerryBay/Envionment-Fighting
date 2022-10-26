@@ -15,32 +15,7 @@ MonoBehaviour:
   buildings:
   - buildingType: 0
     buildings:
-    - name: 
-      icon: {fileID: 21300000, guid: deee1925db83793459c9de1126e2a884, type: 3}
-      money: 0
-    - name: 
-      icon: {fileID: 21300000, guid: a746075c3b52f9e46b3f9bd4948deaee, type: 3}
-      money: 0
-    - name: 
-      icon: {fileID: 21300000, guid: 51239d4d03462524b992098882177eb1, type: 3}
-      money: 0
-    - name: 
-      icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-      money: 0
+    - {fileID: 11400000, guid: 8b72776951f9ab847abe2d1639fd8d62, type: 2}
   - buildingType: 1
     buildings:
-    - name: 
-      icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-      money: 0
-    - name: 
-      icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-      money: 0
-    - name: 
-      icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      money: 0
-    - name: 
-      icon: {fileID: 21300000, guid: 51239d4d03462524b992098882177eb1, type: 3}
-      money: 0
-    - name: 
-      icon: {fileID: 21300000, guid: deee1925db83793459c9de1126e2a884, type: 3}
-      money: 0
+    - {fileID: 11400000, guid: 675d4a4161fc36849a1a0c1347f8bc28, type: 2}

@@ -5,11 +5,7 @@ using UnityEngine;
 
 public class DefenseTower : BaseBuilding
 {
-    public Area attackArea;
-
-    public float damage;
-    public float attackInterval;
-    public float attackDistance;
+    public DefenseBuildingConfig defenseBuildingConfig;
 
     public List<BaseEnemy> enemies = new List<BaseEnemy>();
 

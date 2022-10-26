@@ -17,6 +17,8 @@ public enum GameEvent
     UI_BuildingMenuTypeChanged, // 建筑菜单分组切换
     UI_SelectBuildingPlacePositionStart, // 开始选择建筑放置位置
     UI_SelectBuildingPlacePositionStop, // 停止选择建筑放置位置
+    UI_BuildingUpgrade, // 升级建筑
+    UI_BuildingRemove, // 拆除建筑
 }
 
 /// <summary>
