@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class ProductionBuilding : BaseBuilding
 {
-    // public float productRate;
     public ProductionBuildingConfig productionBuildingConfig;
     
+    private void Awake()
+    {
+        BuildingManager.Instance.prods.Add(this);
+    }
     
+    private void OnDestroy()
+    {
+        if (BuildingManager.Instance.prods.Contains(this))
+        {
+            BuildingManager.Instance.prods.Remove(this);
+        }
+    }
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Timer
+public class IntervalTimer
 {
     private float _startTime;
     private float _duration;

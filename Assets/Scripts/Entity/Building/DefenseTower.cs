@@ -10,6 +10,11 @@ public class DefenseTower : BaseBuilding
     public List<BaseEnemy> enemies = new List<BaseEnemy>();
     private float _timer = 0;
 
+    private void Awake()
+    {
+        BuildingManager.Instance.towers.Add(this);
+    }
+
     private void Update()
     {
         _timer += Time.deltaTime;
@@ -17,6 +22,14 @@ public class DefenseTower : BaseBuilding
         {
             _timer = 0;
             Attack(enemies[0]);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (BuildingManager.Instance.towers.Contains(this))
+        {
+            BuildingManager.Instance.towers.Remove(this);
         }
     }
 

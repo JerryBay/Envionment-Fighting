@@ -14,9 +14,14 @@ public class BaseEnemy : MonoBehaviour
 
     //private Slider _healthSlider;
     private List<Vector2> _wayPoints;
-    [SerializeField]
+    //[SerializeField]
     private float _curHealth;
     private int _pointIndex;
+
+    private void Awake()
+    {
+        EnemyManager.Instance.enemies.Add(this);
+    }
 
     private void Start()
     {
@@ -27,6 +32,14 @@ public class BaseEnemy : MonoBehaviour
     private void Update()
     {
         Move();
+    }
+
+    private void OnDestroy()
+    {
+        if (EnemyManager.Instance.enemies.Contains(this))
+        {
+            EnemyManager.Instance.enemies.Remove(this);
+        }
     }
 
     private void Move()

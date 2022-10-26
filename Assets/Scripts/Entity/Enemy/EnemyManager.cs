@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EnemyManager : SingletonMono<EnemyManager>
 {
+    public List<BaseEnemy> enemies = new List<BaseEnemy>();
+
     public void Spawn(WaveConfig config, Vector2 pos)
     {
         StartCoroutine(SpawnEnemy(config,pos));
