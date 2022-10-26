@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class Route : MonoBehaviour
 {
     //public GameObject[] nodes;

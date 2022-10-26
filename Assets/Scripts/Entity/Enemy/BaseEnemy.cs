@@ -12,7 +12,7 @@ public class BaseEnemy : MonoBehaviour
     public float totalHealth = 100;
     public float speed = 10;
 
-    private Slider _healthSlider;
+    //private Slider _healthSlider;
     private List<Vector2> _wayPoints;
     [SerializeField]
     private float _curHealth;
@@ -21,7 +21,7 @@ public class BaseEnemy : MonoBehaviour
     private void Start()
     {
         _curHealth = totalHealth;
-        _healthSlider = GetComponentInChildren<Slider>();
+        //_healthSlider = GetComponentInChildren<Slider>();
     }
 
     private void Update()
@@ -53,7 +53,7 @@ public class BaseEnemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _curHealth -= damage;
-        _healthSlider.value = _curHealth / totalHealth;
+        //_healthSlider.value = _curHealth / totalHealth;
         if (_curHealth <= 0)
         {
             Die();

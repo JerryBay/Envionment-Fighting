@@ -14,10 +14,22 @@ public class EntitySpawner : SingletonMono<EntitySpawner>
 
     public void SpawnEnemies(WaveConfig config, Vector2 pos)
     {
-        BaseEnemy type = config.enemyType;
-        var inst = Instantiate(type, new Vector3(pos.x, pos.y, 0), Quaternion.identity);
-        var wayPoints = config.route.wayPoints;
-        inst.SetWayPoints(wayPoints);
+        StartCoroutine(Spawn(config,pos));
+    }
+
+    private IEnumerator Spawn(WaveConfig config,Vector2 pos)
+    {
+        BaseEnemy enemy = config.enemyType;
+        Route route = config.route;
+        int count = config.count;
+        float interval = config.interval;
+        
+        for (int i = 0; i < count; i++)
+        {
+            BaseEnemy inst = Instantiate(enemy, new Vector3(pos.x, pos.y, 0),Quaternion.identity);
+            inst.SetWayPoints(route.wayPoints);
+            yield return new WaitForSeconds(interval);
+        }
     }
     
     public void SpawnEnemy(BaseEnemy enemy, Vector2 pos, Route route)
