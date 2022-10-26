@@ -6,4 +6,6 @@ public class ProductionBuilding : BaseBuilding
 {
     // public float productRate;
     public ProductionBuildingConfig productionBuildingConfig;
+    
+    
 }

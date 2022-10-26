@@ -25,7 +25,7 @@ public class CreateTest : MonoBehaviour
 
     public void GenBuilding()
     {
-        EntitySpawner.Instance.SpawnBuilding(towerConfig, buildingPos);
+        EntitySpawner.Instance.SpawnBuildings(towerConfig, buildingPos);
     }
 
     public void GenEnemy()
