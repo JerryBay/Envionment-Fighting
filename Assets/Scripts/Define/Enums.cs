@@ -5,6 +5,7 @@ public enum GameEvent
 {
     GameStageUpdate, // 游戏阶段更新
     MoneyUpdate, // 货币更新
+    GameTimeUpdate, // 游戏时间更新
 
     UI_ProductivityUpdate, // 生产力ui更新
     UI_PollutionUpdate, // 污染情况ui更新
@@ -32,6 +33,13 @@ public enum GameStage : byte
     Playing, // 正在玩
     Success, // 成功
     Failure, // 失败
+}
+
+public enum TimeStage : byte
+{
+    Cultivation = 0, // 农耕时代
+    Machine, // 机械时代
+    Information, // 信息时代
 }
 
 /// <summary>

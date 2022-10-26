@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3f18e3a023d44249cdd08e476cfefd3, type: 3}
+  m_Name: TimeStage1
+  m_EditorClassIdentifier: 
+  timeStageWaves:
+  - createTime: 2
+    waves:
+    - {fileID: 11400000, guid: a57482563bb661b41af300062ad078c7, type: 2}
+  - createTime: 4
+    waves:
+    - {fileID: 11400000, guid: b9cfd18ff740b8f4b863557f88db9804, type: 2}
+  - createTime: 6
+    waves:
+    - {fileID: 11400000, guid: 00150861621313341a2cfe6f5ae633fb, type: 2}
+  - createTime: 8
+    waves:
+    - {fileID: 11400000, guid: 98ee049bc59214d4f936ca15722fea80, type: 2}
+    - {fileID: 11400000, guid: 0004ca3269924b74091864387aadcef1, type: 2}

@@ -18,31 +18,73 @@ public class DataManager : SingletonMono<DataManager>
     public float polluteRate = 0;
     public float polluteTotal = 0;
     public float evaluation = 0;
-
     public int peopleDead = 0;
+    
+    public float gameTime = 0; // 游戏时间
+    public TimeStage timeStage; // 时间阶段
+    private bool gameStart; // 是否已经开始游戏
 
-    private void Awake()
+    private void OnMinuteStep()
     {
-        timer = new Timer();
-        timer.InitTime();
-        oneMinute = new IntervalTimer(60);
-        oneMinute.action += () => { population = (int)(population * 1.01) + 20;};
-        oneSecond = new IntervalTimer(1);
-        oneSecond.action += () => { polluteTotal += polluteRate;};
-        oneSecond.action += () => { coin += productivity;};
+        population = (int) (population * 1.01) + 20;
     }
 
-    private void Start()
+    private void OnSecondStep()
     {
-        coin = config.primaryCoin;
-        population = config.primaryPopulation;
-        
+        polluteTotal += polluteRate;
+        coin += productivity;
+
+        // 更新游戏时间
+        gameTime++;
+        DataManager.Instance.timeStage =
+            (TimeStage) Mathf.FloorToInt(gameTime / 60f / GameDef.gameConfig.timeStageStepMinute);
+        EventManager.Dispath(GameEvent.GameTimeUpdate, gameTime);
     }
 
     private void Update()
     {
-        oneMinute.Update();
-        oneSecond.Update();
-        evaluation = (50 + productivity * 10 - polluteRate * 2) /population * 1;
+        if (gameStart) // 开始游戏后才更新游戏时间
+        {
+            oneMinute.Update();
+            oneSecond.Update();
+            evaluation = (50 + productivity * 10 - polluteRate * 2) /population * 1;
+        }
+    }
+
+    private void OnEnable()
+    {
+        EventManager.Register(GameEvent.GameStageUpdate, OnGameStageUpdateEvent);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Unregister(GameEvent.GameStageUpdate, OnGameStageUpdateEvent);
+    }
+
+    private void OnGameStageUpdateEvent(object[] args)
+    {
+        GameStage stage = (GameStage) args[0];
+        switch (stage)
+        {
+            case GameStage.Playing: // 开始游戏
+                timer = new Timer();
+                timer.InitTime();
+                oneMinute = new IntervalTimer(60);
+                oneMinute.action = OnMinuteStep;
+                oneSecond = new IntervalTimer(1);
+                oneSecond.action = OnSecondStep;
+
+                coin = config.primaryCoin;
+                population = config.primaryPopulation;
+
+                gameStart = true;
+                gameTime = 0;
+                timeStage = TimeStage.Cultivation;
+                EventManager.Dispath(GameEvent.GameTimeUpdate, 0);
+                break;
+            default:
+                gameStart = false;
+                break;
+        }
     }
 }

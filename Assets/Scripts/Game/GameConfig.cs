@@ -7,7 +7,7 @@ using UnityEngine;
 public class GameConfig : ScriptableObject
 {
     public BuildingConfigs[] buildings;
-    public WaveConfig[] monsterWaves;
-    
-    
+    public TimeStageWaveConfig[] timeStageWaves;
+    public int timeStageStepMinute;
+
 }

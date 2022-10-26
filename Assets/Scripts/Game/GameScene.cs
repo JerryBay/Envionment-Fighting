@@ -11,8 +11,25 @@ public class GameScene : MonoBehaviour
     private SpriteRenderer buindingGhostSpr;
     private bool isSelectBuildingPosition; // 是否正在选择建筑放置位置
 
+    private WaveCreator waveCreator;
+    private bool gameStart;
+    private TimeStage lastTimeStage;
+
+    public void Awake()
+    {
+        waveCreator = new WaveCreator();
+    }
+
     private void Update()
     {
+        if (!gameStart) return;
+
+        if (Input.GetKeyDown(KeyCode.End))
+            Time.timeScale = 20;
+        if (Input.GetKeyUp(KeyCode.End))
+            Time.timeScale = 1;
+
+        waveCreator.Update();
         if (Input.GetKeyDown(KeyCode.T))
         {
             UIManager.Inst.OpenUIPanel<UIPanelTip>().ShowTip("啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊");
@@ -65,6 +82,8 @@ public class GameScene : MonoBehaviour
 
     private void OnEnable()
     {
+        EventManager.Register(GameEvent.GameStageUpdate, OnGameStageUpdateEvent);
+        EventManager.Register(GameEvent.GameTimeUpdate, OnGameTimeUpdateEvent);
         EventManager.Register(GameEvent.UI_SelectBuildingPlacePositionStart, OnSelectBuildingPlacePositionStartEvent);
         EventManager.Register(GameEvent.UI_SelectBuildingPlacePositionStop, OnSelectBuildingPlacePositionStopEvent);
         EventManager.Register(GameEvent.UI_BuildingUpgrade, OnBuildingUpgradeEvent);
@@ -73,10 +92,36 @@ public class GameScene : MonoBehaviour
 
     private void OnDisable()
     {
+        EventManager.Unregister(GameEvent.GameStageUpdate, OnGameStageUpdateEvent);
+        EventManager.Unregister(GameEvent.GameTimeUpdate, OnGameTimeUpdateEvent);
         EventManager.Unregister(GameEvent.UI_SelectBuildingPlacePositionStart, OnSelectBuildingPlacePositionStartEvent);
         EventManager.Unregister(GameEvent.UI_SelectBuildingPlacePositionStop, OnSelectBuildingPlacePositionStopEvent);
         EventManager.Unregister(GameEvent.UI_BuildingUpgrade, OnBuildingUpgradeEvent);
         EventManager.Unregister(GameEvent.UI_BuildingRemove, OnBuildingRemoveEvent);
+    }
+
+    private void OnGameStageUpdateEvent(object[] args)
+    {
+        GameStage stage = (GameStage) args[0];
+        switch (stage)
+        {
+            case GameStage.Playing: // 开始游戏
+                gameStart = true;
+                lastTimeStage = TimeStage.Cultivation;
+                waveCreator.Reset(GameDef.gameConfig.timeStageWaves[0], lastTimeStage);
+                break;
+            default:
+                gameStart = false;
+                break;
+        }
+    }
+
+    private void OnGameTimeUpdateEvent(object[] args)
+    {
+        if (lastTimeStage == DataManager.Instance.timeStage)
+            return;
+        lastTimeStage = DataManager.Instance.timeStage;
+        waveCreator.Reset(GameDef.gameConfig.timeStageWaves[(int) lastTimeStage], lastTimeStage);
     }
 
     private void OnSelectBuildingPlacePositionStartEvent(object[] args)

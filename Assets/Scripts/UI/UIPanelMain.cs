@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,8 @@ public class UIPanelMain : UIPanelBase
     [Header("核心")] [SerializeField] private Text gameTime; // 游戏时长
     [SerializeField] private Text age; // 所处时代
 
+    private static string[] timeStageNames = new[] { "农耕时代", "机械时代", "信息时代" };
+
     private void Update()
     {
         // 测试效果
@@ -37,6 +40,7 @@ public class UIPanelMain : UIPanelBase
     protected override void OnShow()
     {
         // 注册ui事件
+        EventManager.Register(GameEvent.GameTimeUpdate, OnGameTimeUpdateEvent);
         EventManager.Register(GameEvent.UI_ProductivityUpdate, OnProductivityUpdateEvent);
         EventManager.Register(GameEvent.UI_PollutionUpdate, OnPollutionUpdateEvent);
         EventManager.Register(GameEvent.UI_WelfareUpdate, OnWelfareUpdateEvent);
@@ -51,6 +55,7 @@ public class UIPanelMain : UIPanelBase
     protected override void OnHide()
     {
         // 注销ui事件
+        EventManager.Unregister(GameEvent.GameTimeUpdate, OnGameTimeUpdateEvent);
         EventManager.Unregister(GameEvent.UI_ProductivityUpdate, OnProductivityUpdateEvent);
         EventManager.Unregister(GameEvent.UI_PollutionUpdate, OnPollutionUpdateEvent);
         EventManager.Unregister(GameEvent.UI_WelfareUpdate, OnWelfareUpdateEvent);
@@ -58,6 +63,17 @@ public class UIPanelMain : UIPanelBase
         EventManager.Unregister(GameEvent.UI_DeathManCountUpdate, OnDeathManCountUpdateEvent);
         EventManager.Unregister(GameEvent.UI_SelectBuildingPlacePositionStart, OnSelectBuildingPlacePositionStartEvent);
         EventManager.Unregister(GameEvent.UI_SelectBuildingPlacePositionStop, OnSelectBuildingPlacePositionStopEvent);
+    }
+
+    private void OnGameTimeUpdateEvent(object[] args)
+    {
+        float time = DataManager.Instance.gameTime;
+        string minute = Mathf.FloorToInt(time / 60).ToString();
+        if (minute.Length == 1) minute = minute.Insert(0, "0");
+        string second = Mathf.FloorToInt(time % 60).ToString();
+        if (second.Length == 1) second = second.Insert(0, "0");
+        gameTime.text = $"{minute}:{second}";
+        age.text = timeStageNames[(int) DataManager.Instance.timeStage];
     }
 
     private void OnProductivityUpdateEvent(object[] args)
