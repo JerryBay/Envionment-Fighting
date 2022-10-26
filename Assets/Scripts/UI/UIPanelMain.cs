@@ -92,7 +92,9 @@ public class UIPanelMain : UIPanelBase
 
     private void OnSelectBuildingPlacePositionStopEvent(object[] args)
     {
-        animator.Play("TempShow");
+        if ((bool) args[0])
+            animator.Play("TempoShowOnlyButton");
+        else animator.Play("TempShow");
     }
 
     public void OnBuildButtonClick()

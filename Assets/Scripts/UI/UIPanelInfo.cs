@@ -17,6 +17,8 @@ public class UIPanelInfo : UIPanelBase
     [SerializeField] private Text defenseAttackText;
     [SerializeField] private Text defenseAttackAreaText;
     [SerializeField] private GameObject monsterObj;
+    [SerializeField] private Text monsterNameText;
+    [SerializeField] private Text monsterDescText;
 
     private BaseBuilding building;
 
@@ -53,6 +55,22 @@ public class UIPanelInfo : UIPanelBase
         {
             Debug.LogError("error");
         }
+    }
+
+    /// <summary>
+    /// 展示怪物信息
+    /// </summary>
+    public void ShowMonsterInfo(BaseEnemy enemy)
+    {
+        productionObj.SetActive(false);
+        defenseObj.SetActive(false);
+        monsterObj.SetActive(true);
+        // todo 更新怪物信息
+    }
+
+    public void OnMaskButtonClick()
+    {
+        animator.Play("Hide");
     }
 
     public void OnBuildingUpgradeButtonClick()
