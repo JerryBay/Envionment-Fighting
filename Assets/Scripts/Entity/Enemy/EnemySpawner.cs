@@ -1,17 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Mathematics;
 
-public class EntitySpawner : SingletonMono<EntitySpawner>
+public class EnemySpawner : SingletonMono<EnemySpawner>
 {
-    public void SpawnBuildings(BuildingConfig config, Vector2 pos)
-    {
-        int2 index = GridManager.Instance.GetIndex(pos);
-        Vector2 modifiedPos = GridManager.Instance.GetPos(index);
-        Instantiate(config.prefab, new Vector3(modifiedPos.x, modifiedPos.y, 0),Quaternion.identity);
-    }
-
     public void SpawnEnemies(WaveConfig config, Vector2 pos)
     {
         StartCoroutine(Spawn(config,pos));
