@@ -51,7 +51,6 @@ public class DefenseTower : BaseBuilding
         {
             if (!enemies.Contains(enemy))
             {
-                Debug.Log("enemy in");
                 enemies.Add(enemy);
             }
         }
@@ -64,7 +63,6 @@ public class DefenseTower : BaseBuilding
         {
             if (enemies.Contains(enemy))
             {
-                Debug.Log("enemy out");
                 enemies.Remove(enemy);
             }
         }
@@ -83,6 +81,7 @@ public class DefenseTower : BaseBuilding
             bullet.damage = defenseBuildingConfig.damage;
             bullet.speed = defenseBuildingConfig.ammoSpeed;
             bullet.type = defenseBuildingConfig.attackType;
+            bullet.damageRange = defenseBuildingConfig.damageRange;
             bullet.originTower = this;
             bullet.targetEnemy = enemy;
         }

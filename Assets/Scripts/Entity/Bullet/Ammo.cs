@@ -8,6 +8,7 @@ public class Ammo : MonoBehaviour
     public DefenseTower originTower;
     public BaseEnemy targetEnemy;
     public AmmoType type;
+    public float damageRange;
     public float speed;
     public float damage;
     
@@ -29,9 +30,20 @@ public class Ammo : MonoBehaviour
         {
             if (type == AmmoType.AreaOfEffect)
             {
-                
+                Vector2 center = targetEnemy.transform.position;
+                var enemies = EnemyManager.Instance.enemies;
+                for (int i = 0; i < enemies.Count; i++)
+                {
+                    if (Vector2.Distance(enemies[i].transform.position,center) <= damageRange)
+                    {
+                        enemies[i].TakeDamage(damage);
+                    }
+                }
             }
-            targetEnemy.TakeDamage(damage);
+            else
+            {
+                targetEnemy.TakeDamage(damage);
+            }
             DestroyAmmo();   
         }
     }
