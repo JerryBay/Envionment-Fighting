@@ -27,6 +27,7 @@ public class DefenseTower : BaseBuilding
 
     private void OnDestroy()
     {
+        GridManager.Inst.BuildingRelease(this);
         if (BuildingManager.Instance.towers.Contains(this))
         {
             BuildingManager.Instance.towers.Remove(this);

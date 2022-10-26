@@ -28,7 +28,7 @@ public class GameScene : MonoBehaviour
             }
             else
             {
-                buindingGhostSpr.color = new Color(1, 1, 1, .4f);
+                buindingGhostSpr.color = new Color(1, 0, 0, .4f);
             }
 
             buindingGhostSpr.transform.position = Vector2.Lerp(buindingGhostSpr.transform.position, pos, 0.5f);

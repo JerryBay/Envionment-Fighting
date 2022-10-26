@@ -13,6 +13,7 @@ public class ProductionBuilding : BaseBuilding
     
     private void OnDestroy()
     {
+        GridManager.Inst.BuildingRelease(this);
         if (BuildingManager.Instance.prods.Contains(this))
         {
             BuildingManager.Instance.prods.Remove(this);
