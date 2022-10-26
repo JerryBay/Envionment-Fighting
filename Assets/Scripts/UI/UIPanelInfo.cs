@@ -22,6 +22,28 @@ public class UIPanelInfo : UIPanelBase
 
     private BaseBuilding building;
 
+    protected override void OnShow()
+    {
+        EventManager.Register(GameEvent.UI_BuildingUpgradeComplate, OnBuildingUpgradeComplateEvent);
+        EventManager.Register(GameEvent.UI_BuildingRemoveComplate, OnBuildingRemoveComplateEvent);
+    }
+
+    protected override void OnHide()
+    {
+        EventManager.Unregister(GameEvent.UI_BuildingUpgradeComplate, OnBuildingUpgradeComplateEvent);
+        EventManager.Unregister(GameEvent.UI_BuildingRemoveComplate, OnBuildingRemoveComplateEvent);
+    }
+
+    private void OnBuildingUpgradeComplateEvent(object[] args)
+    {
+        animator.Play("Hide");
+    }
+
+    private void OnBuildingRemoveComplateEvent(object[] args)
+    {
+        animator.Play("Hide");
+    }
+
     /// <summary>
     /// 展示建筑信息
     /// </summary>

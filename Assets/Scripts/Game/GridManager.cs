@@ -29,7 +29,7 @@ public class GridManager
             obj.transform.SetParent(gridsParent.transform);
             obj.transform.position = trs.GetChild(i).position;
             col = obj.AddComponent<BoxCollider2D>();
-            col.size = new Vector2(1.12f, 1.12f);
+            col.size = GameDef.gridSize;
             col.offset = Vector2.zero;
             col.isTrigger = true;
             trs.GetChild(i).gameObject.SetActive(false);

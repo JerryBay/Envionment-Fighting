@@ -19,6 +19,8 @@ public enum GameEvent
     UI_SelectBuildingPlacePositionStop, // 停止选择建筑放置位置
     UI_BuildingUpgrade, // 升级建筑
     UI_BuildingRemove, // 拆除建筑
+    UI_BuildingUpgradeComplate, // 建筑升级成功
+    UI_BuildingRemoveComplate, // 建筑拆除成功
 }
 
 /// <summary>
