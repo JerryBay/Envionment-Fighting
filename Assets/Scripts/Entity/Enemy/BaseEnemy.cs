@@ -14,8 +14,7 @@ public class BaseEnemy : MonoBehaviour
 
     //private Slider _healthSlider;
     private List<Vector2> _wayPoints;
-    [SerializeField]
-    private float _curHealth;
+    [SerializeField] private float _curHealth;
     private int _pointIndex;
 
     private void Awake()
@@ -48,19 +47,21 @@ public class BaseEnemy : MonoBehaviour
         {
             return;
         }
-        
-        transform.Translate((_wayPoints[_pointIndex] - (Vector2)transform.position)
-                            .normalized * Time.deltaTime * speed);
-        if (Vector2.Distance(_wayPoints[_pointIndex],transform.position) < 0.02f)
+
+        transform.Translate((_wayPoints[_pointIndex] - (Vector2) transform.position)
+            .normalized * Time.deltaTime * speed);
+        if (Vector2.Distance(_wayPoints[_pointIndex], transform.position) < 0.02f)
         {
             _pointIndex++;
         }
     }
-    
+
 
     public void SetWayPoints(List<Vector2> points)
     {
         _wayPoints = points;
+        if (points != null && points.Count > 0)
+            transform.position = _wayPoints[0];
     }
 
     public void TakeDamage(float damage)

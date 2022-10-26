@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: {fileID: -8760487449008663744, guid: 9d6ee7158c3dbed47b4666c34d26979d, type: 3}
   route: {fileID: 722432789664716146, guid: bb92a8ced2105304fbd730da4fe3e9d4, type: 3}
-  count: 5
-  interval: 1
+  count: 100
+  interval: 2

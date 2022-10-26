@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameScene : MonoBehaviour
@@ -86,11 +87,11 @@ public class GameScene : MonoBehaviour
         if (buindingGhostSpr == null)
         {
             var obj = new GameObject($"buindingGhost-{buildingConfig.name}");
+            obj.transform.localScale = Vector3.one * 0.5f;
             buindingGhostSpr = obj.AddComponent<SpriteRenderer>();
             buindingGhostSpr.sprite = buildingConfig.icon;
             buindingGhostSpr.sortingOrder = 10;
-            buindingGhostSpr.drawMode = SpriteDrawMode.Sliced;
-            buindingGhostSpr.size = new Vector2(1, 1);
+            buindingGhostSpr.drawMode = SpriteDrawMode.Simple;
             Vector2 pos = GameGlobal.MainCamera.ScreenToWorldPoint(Input.mousePosition);
             obj.transform.position = pos;
         }
