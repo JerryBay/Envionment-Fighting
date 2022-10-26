@@ -14,6 +14,7 @@ public class DefenseTower : BaseBuilding
     {
         base.Awake();
         BuildingManager.Instance.towers.Add(this);
+        DataManager.Instance.polluteRate += defenseBuildingConfig.polluteRate;
     }
 
     private void Update()
@@ -31,6 +32,7 @@ public class DefenseTower : BaseBuilding
         GridManager.Inst.BuildingRelease(this);
         if (BuildingManager.Instance.towers.Contains(this))
         {
+            DataManager.Instance.polluteRate -= defenseBuildingConfig.polluteRate;
             BuildingManager.Instance.towers.Remove(this);
         }
 

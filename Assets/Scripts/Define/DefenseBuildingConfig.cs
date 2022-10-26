@@ -3,6 +3,8 @@
 [CreateAssetMenu(fileName = "New ProductionBuildingConfig", menuName = "创建防御建筑")]
 public class DefenseBuildingConfig : BuildingConfig
 {
+    public float polluteRate;
+    
     public Area attackArea; // 攻击范围
     public float damage; // 伤害
     public float damageRange;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class IntervalTimer
+public class Timer
 {
     private float _startTime;
     private float _duration;
@@ -9,17 +9,20 @@ public class IntervalTimer
     public void InitTime()
     {
         _startTime = Time.time;
+        _isPaused = false;
         _duration = 0;
     }
 
     public void Pause()
     {
         _isPaused = true;
+        _duration += Time.time - _startTime;
     }
 
     public void Play()
     {
-        _isPaused = true;
+        _isPaused = false;
+        _startTime = Time.time;
     }
 
     public bool IsPausedOrNot()
@@ -27,16 +30,15 @@ public class IntervalTimer
         return _isPaused;
     }
 
-    public void Update()
+    public float GetDuration()
     {
         if (!_isPaused)
         {
-            _duration += Time.deltaTime;
+            return _duration + Time.time - _startTime;
         }
-    }
-
-    public float GetDuration()
-    {
-        return _duration;
+        else
+        {
+            return _duration;
+        }
     }
 }
