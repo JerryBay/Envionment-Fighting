@@ -19,3 +19,5 @@ MonoBehaviour:
   - buildingType: 1
     buildings:
     - {fileID: 11400000, guid: 675d4a4161fc36849a1a0c1347f8bc28, type: 2}
+  monsterWaves:
+  - {fileID: 11400000, guid: 9da488190680b5f418afc8cab32f6bd2, type: 2}
