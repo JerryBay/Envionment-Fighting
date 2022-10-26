@@ -26,17 +26,17 @@ public class CreateTest : MonoBehaviour
 
     public void GenBuilding()
     {
-        BuildingSpawner.Instance.SpawnBuildings(towerConfig, buildingPos);
+        BuildingManager.Instance.Spawn(towerConfig, buildingPos);
     }
 
     public void GenEnemies()
     {
-        EnemySpawner.Instance.SpawnEnemies(waveConfig, originPos);
+        EnemyManager.Instance.Spawn(waveConfig, originPos);
     }
 
     public void GenEnemy()
     {
-        EnemySpawner.Instance.SpawnEnemy(enemy,originPos,way);
+        EnemyManager.Instance.Spawn(enemy,originPos,way);
     }
 
     // private void Update()
