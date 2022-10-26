@@ -29,7 +29,7 @@ public class Ammo : MonoBehaviour
         {
             if (type == AmmoType.AreaOfEffect)
             {
-
+                
             }
             targetEnemy.TakeDamage(damage);
             DestroyAmmo();   

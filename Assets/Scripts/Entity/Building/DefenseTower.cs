@@ -68,6 +68,7 @@ public class DefenseTower : BaseBuilding
         {
             Ammo bullet = Instantiate(defenseBuildingConfig.ammo,transform);
             bullet.damage = defenseBuildingConfig.damage;
+            bullet.speed = defenseBuildingConfig.ammoSpeed;
             bullet.type = defenseBuildingConfig.attackType;
             bullet.originTower = this;
             bullet.targetEnemy = enemy;
