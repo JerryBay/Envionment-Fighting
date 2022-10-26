@@ -25,7 +25,7 @@ public class GameScene : MonoBehaviour
         if (!gameStart) return;
 
         if (Input.GetKeyDown(KeyCode.End))
-            Time.timeScale = 20;
+            Time.timeScale = 50;
         if (Input.GetKeyUp(KeyCode.End))
             Time.timeScale = 1;
 
@@ -121,7 +121,8 @@ public class GameScene : MonoBehaviour
         if (lastTimeStage == DataManager.Instance.timeStage)
             return;
         lastTimeStage = DataManager.Instance.timeStage;
-        waveCreator.Reset(GameDef.gameConfig.timeStageWaves[(int) lastTimeStage], lastTimeStage);
+        if (GameDef.gameConfig.timeStageWaves.Length > (int) lastTimeStage)
+            waveCreator.Reset(GameDef.gameConfig.timeStageWaves[(int) lastTimeStage], lastTimeStage);
     }
 
     private void OnSelectBuildingPlacePositionStartEvent(object[] args)

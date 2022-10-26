@@ -49,7 +49,9 @@ public class WaveCreator
                     StartCreateEnemy(curWave.waves[i]);
                 }
 
-                curWave = waveQue.Dequeue();
+                if (waveQue.Count > 0)
+                    curWave = waveQue.Dequeue();
+                else curWave = null;
             }
         }
     }
