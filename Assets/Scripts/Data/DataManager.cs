@@ -15,4 +15,6 @@ public class DataManager : SingletonMono<DataManager>
     public float polluteTotal;
 
     public float happiness;
+    
+    
 }
