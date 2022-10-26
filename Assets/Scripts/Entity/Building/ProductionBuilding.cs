@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ProductionBuilding : BaseBuilding
 {
-    public float productRate;
-    
-    
+    // public float productRate;
+    public ProductionBuildingConfig productionBuildingConfig;
 }
