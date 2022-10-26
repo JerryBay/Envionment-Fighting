@@ -48,7 +48,13 @@ public class GridManager
             return false;
 
         gridKey = hitInfo.collider.gameObject;
-        return buildingsMap.TryGetValue(gridKey, out BaseBuilding b) && b == null;
+        if (buildingsMap.TryGetValue(gridKey, out BaseBuilding b) && b == null)
+        {
+            return true;
+        }
+
+        gridKey = null;
+        return false;
     }
 
     /// <summary>
