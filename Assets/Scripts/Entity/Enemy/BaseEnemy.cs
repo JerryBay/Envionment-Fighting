@@ -8,8 +8,7 @@ using UnityEngine.UI;
 public class BaseEnemy : MonoBehaviour
 {
     public Area area;
-    public Route route;
-    
+
     public float totalHealth = 100;
     public float speed = 10;
 
@@ -21,6 +20,7 @@ public class BaseEnemy : MonoBehaviour
     private void Start()
     {
         _curHealth = totalHealth;
+        _healthSlider = GetComponentInChildren<Slider>();
     }
 
     private void Update()
@@ -42,12 +42,7 @@ public class BaseEnemy : MonoBehaviour
             _pointIndex++;
         }
     }
-
-    public void SetRoute(Route route)
-    {
-        this.route = route;
-        _wayPoints = this.route.wayPoints;
-    }
+    
 
     public void SetWayPoints(List<Vector2> points)
     {

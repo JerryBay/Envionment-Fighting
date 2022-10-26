@@ -24,12 +24,12 @@ public class CreateTest : MonoBehaviour
 
     public void GenBuilding()
     {
-        BuildingSpawner.Instance.Spawn(building, buildingPos);
+        EntitySpawner.Instance.SpawnBuilding(building, buildingPos);
     }
 
     public void GenEnemy()
     {
-        EnemySpawner.Instance.Spawn(enemy,originPos,way);
+        EntitySpawner.Instance.SpawnEnemy(enemy,originPos,way);
     }
 
     // private void Update()

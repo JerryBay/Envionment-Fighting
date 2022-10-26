@@ -5,16 +5,17 @@ using UnityEngine;
 
 public class Route : MonoBehaviour
 {
-    public GameObject[] nodes;
+    //public GameObject[] nodes;
     public List<Vector2> wayPoints;
 
     private void Awake()
     {
         wayPoints = new List<Vector2>();
         Transform[] transforms = GetComponentsInChildren<Transform>();
-        foreach (var transform in transforms)
+        //Debug.Log(transforms.Length);
+        for (int i = 1; i < transforms.Length; i++)
         {
-            Vector2 point = transform.position;
+            Vector2 point = transforms[i].position;
             wayPoints.Add(point);
         }
     }
