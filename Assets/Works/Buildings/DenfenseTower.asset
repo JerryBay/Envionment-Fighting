@@ -21,6 +21,7 @@ MonoBehaviour:
   level: 1
   rarity: 1
   nextLevel: {fileID: 0}
+  polluteRate: 1
   attackArea: 1
   damage: 10
   damageRange: 2

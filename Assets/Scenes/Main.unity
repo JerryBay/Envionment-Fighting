@@ -1182,10 +1182,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerConfig: {fileID: 11400000, guid: e52a1bec2eb412b47885ea62c1f204d9, type: 2}
+  prodConfig: {fileID: 11400000, guid: 67b9e8853a898aa41ba1fde130c2737e, type: 2}
   waveConfig: {fileID: 11400000, guid: 9da488190680b5f418afc8cab32f6bd2, type: 2}
   enemy: {fileID: -8760487449008663744, guid: 9d6ee7158c3dbed47b4666c34d26979d, type: 3}
   originPos: {x: 4, y: -4}
-  buildingPos: {x: 2, y: -4}
+  towerPos: {x: 2, y: 0}
+  prodPos: {x: -2, y: 0}
   way: {fileID: 0}
 --- !u!1 &304691362
 GameObject:
@@ -1303,7 +1305,6 @@ GameObject:
   m_Component:
   - component: {fileID: 328376339}
   - component: {fileID: 328376340}
-  - component: {fileID: 328376341}
   m_Layer: 0
   m_Name: GameScene
   m_TagString: Untagged
@@ -1338,22 +1339,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a42704f65954549b2373a647f56513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &328376341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 328376338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d66622f720c83f4cb7131419936db5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  productivity: 0
-  population: 0
-  polluteRate: 0
-  polluteTotal: 0
 --- !u!1 &353427503
 GameObject:
   m_ObjectHideFlags: 0
@@ -3771,6 +3756,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1386911503}
   - component: {fileID: 1386911504}
+  - component: {fileID: 1386911505}
   m_Layer: 0
   m_Name: SingletonMono
   m_TagString: Untagged
@@ -3806,6 +3792,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameConfig: {fileID: 11400000, guid: 34872a287307d57478e3c5c42e50b055, type: 2}
+--- !u!114 &1386911505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386911502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d66622f720c83f4cb7131419936db5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  config: {fileID: 11400000, guid: 33bfe388a0b41f64c8b6d85d5d554274, type: 2}
+  coin: 0
+  productivity: 0
+  population: 0
+  polluteRate: 0
+  polluteTotal: 0
+  evaluation: 0
 --- !u!1 &1402299063
 GameObject:
   m_ObjectHideFlags: 0

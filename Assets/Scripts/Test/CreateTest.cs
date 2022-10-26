@@ -3,29 +3,38 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CreateTest : MonoBehaviour
 {
-    public BuildingConfig towerConfig;
+    public DefenseBuildingConfig towerConfig;
+    public ProductionBuildingConfig prodConfig;
     public WaveConfig waveConfig;
     public BaseEnemy enemy;
 
     public Vector2 originPos;
 
-    public Vector2 buildingPos;
+    [FormerlySerializedAs("buildingPos")] public Vector2 towerPos;
+    public Vector2 prodPos;
 
     public Route way;
 
     private void Start()
     {
-        GenBuilding();
+        GenTower();
+        GenProd();
         GenEnemies();
         //GenEnemy();
-    }   
+    }
 
-    public void GenBuilding()
+    public void GenProd()
     {
-        BuildingManager.Instance.Spawn(towerConfig, buildingPos);
+        BuildingManager.Instance.Spawn(prodConfig, prodPos);
+    }
+
+    public void GenTower()
+    {
+        BuildingManager.Instance.Spawn(towerConfig, towerPos);
     }
 
     public void GenEnemies()
