@@ -24,6 +24,7 @@ public class GameScene : MonoBehaviour
             buindingGhost.transform.position = pos;
             if (Input.GetMouseButtonDown(0))
             {
+                EntitySpawner.Instance.SpawnBuilding(buildingConfig,pos);
                 // todo 现在是鼠标点击直接取消放置
             }
             else if (Input.GetMouseButtonDown(1)) // 鼠标右键取消放置

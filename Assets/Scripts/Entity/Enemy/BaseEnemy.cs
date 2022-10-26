@@ -14,6 +14,7 @@ public class BaseEnemy : MonoBehaviour
 
     private Slider _healthSlider;
     private List<Vector2> _wayPoints;
+    [SerializeField]
     private float _curHealth;
     private int _pointIndex;
 

@@ -8,6 +8,7 @@ using UnityEngine;
 public class CreateTest : MonoBehaviour
 {
     public BaseBuilding building;
+    public BuildingConfig towerConfig;
     public BaseEnemy enemy;
 
     public Vector2 originPos;
@@ -24,7 +25,7 @@ public class CreateTest : MonoBehaviour
 
     public void GenBuilding()
     {
-        EntitySpawner.Instance.SpawnBuilding(building, buildingPos);
+        EntitySpawner.Instance.SpawnBuilding(towerConfig, buildingPos);
     }
 
     public void GenEnemy()

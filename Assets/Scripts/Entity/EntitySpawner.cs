@@ -5,6 +5,13 @@ using Unity.Mathematics;
 
 public class EntitySpawner : SingletonMono<EntitySpawner>
 {
+    public void SpawnBuilding(BuildingConfig config, Vector2 pos)
+    {
+        int2 index = GridManager.Instance.GetIndex(pos);
+        Vector2 modifiedPos = GridManager.Instance.GetPos(index);
+        Instantiate(config.prefab, new Vector3(modifiedPos.x, modifiedPos.y, 0),Quaternion.identity);
+    }
+    
     public void SpawnEnemy(BaseEnemy enemy, Vector2 pos, Route route)
     {
         BaseEnemy inst = Instantiate(enemy, new Vector3(pos.x, pos.y, 0),Quaternion.identity);
@@ -15,12 +22,5 @@ public class EntitySpawner : SingletonMono<EntitySpawner>
     {
         BaseEnemy inst = Instantiate(enemy, new Vector3(pos.x, pos.y, 0),Quaternion.identity);
         inst.SetWayPoints(wayPoints);
-    }
-    
-    public void SpawnBuilding(BaseBuilding building,Vector2 pos)
-    {
-        int2 index = GridManager.Instance.GetIndex(pos);
-        Vector2 modifiedPos = GridManager.Instance.GetPos(index);
-        Instantiate(building, new Vector3(modifiedPos.x, modifiedPos.y, 0),Quaternion.identity);
     }
 }

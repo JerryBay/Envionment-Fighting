@@ -41,22 +41,48 @@ public class DefenseTower : BaseBuilding
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    // private void OnCollisionEnter2D(Collision2D col)
+    // {
+    //     Debug.Log(1111);
+    //     BaseEnemy enemy = col.otherCollider.GetComponent<BaseEnemy>();
+    //     if (enemy && enemy.area == attackArea)
+    //     {
+    //         enemies.Add(enemy);
+    //     }
+    // }
+    //
+    // private void OnCollisionExit2D(Collision2D other)
+    // {
+    //     BaseEnemy enemy = other.collider.GetComponent<BaseEnemy>();
+    //     if (enemy && enemy.area == attackArea)
+    //     {
+    //         enemies.Remove(enemy);
+    //     }
+    // }
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(1111);
         BaseEnemy enemy = other.GetComponent<BaseEnemy>();
         if (enemy && enemy.area == attackArea)
         {
-            enemies.Add(enemy);
+            if (!enemies.Contains(enemy))
+            {
+                Debug.Log("enemy in");
+                enemies.Add(enemy);
+            }
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         BaseEnemy enemy = other.GetComponent<BaseEnemy>();
         if (enemy && enemy.area == attackArea)
         {
-            enemies.Remove(enemy);
+            if (enemies.Contains(enemy))
+            {
+                Debug.Log("enemy out");
+                enemies.Remove(enemy);
+            }
         }
     }
 

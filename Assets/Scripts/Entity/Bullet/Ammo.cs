@@ -17,9 +17,10 @@ public class Ammo : MonoBehaviour
 
     private void Update()
     {
-        if (!targetEnemy)
+        if (targetEnemy == null)
         {
             DestroyAmmo();
+            return;
         }
         
         Vector3 dir = (targetEnemy.transform.position - transform.position).normalized;

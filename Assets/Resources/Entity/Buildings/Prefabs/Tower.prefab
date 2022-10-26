@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6140662680817170526}
   - component: {fileID: 7767420997631037711}
   - component: {fileID: 7942479250645443810}
+  - component: {fileID: -3063259449612832858}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -46,17 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 547c56a88c3c44e0aee0ec844f885be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
-  level: 0
-  rarity: 0
-  buildingCost: 0
-  polluteRate: 0
   attackArea: 1
   attackType: 0
-  damage: 10
-  attackInterval: 0.2
+  damage: 5
+  attackInterval: 1
   attackDistance: 3
   ammo: {fileID: 1140408481, guid: b43d18e8e4449e1479ab990acd1584e1, type: 3}
+  defenseBuildingConfig: {fileID: 0}
   enemies: []
 --- !u!212 &7767420997631037711
 SpriteRenderer:
@@ -123,6 +120,27 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0084142685, y: 0}
+  m_Offset: {x: -0.010926247, y: 0}
   serializedVersion: 2
-  m_Radius: 5.999634
+  m_Radius: 4.0462723
+--- !u!50 &-3063259449612832858
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2325336990936241479}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 0
+  m_Constraints: 0
