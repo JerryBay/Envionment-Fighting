@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2325336990936241478}
   - component: {fileID: 6140662680817170526}
   - component: {fileID: 7767420997631037711}
+  - component: {fileID: 7942479250645443810}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -51,9 +52,12 @@ MonoBehaviour:
   buildingCost: 0
   polluteRate: 0
   attackArea: 1
-  damage: 0
-  attackSpeed: 0
-  attackDistance: 0
+  attackType: 0
+  damage: 10
+  attackInterval: 0.2
+  attackDistance: 3
+  ammo: {fileID: 1140408481, guid: b43d18e8e4449e1479ab990acd1584e1, type: 3}
+  enemies: []
 --- !u!212 &7767420997631037711
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -106,3 +110,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &7942479250645443810
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2325336990936241479}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0084142685, y: 0}
+  serializedVersion: 2
+  m_Radius: 5.999634
