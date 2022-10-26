@@ -5,6 +5,8 @@ using Unity.Mathematics;
 
 public class EntitySpawner : SingletonMono<EntitySpawner>
 {
+    
+    
     public void SpawnBuilding(BuildingConfig config, Vector2 pos)
     {
         int2 index = GridManager.Instance.GetIndex(pos);

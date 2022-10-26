@@ -47,13 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 547c56a88c3c44e0aee0ec844f885be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackArea: 1
-  attackType: 0
-  damage: 5
-  attackInterval: 1
-  attackDistance: 3
-  ammo: {fileID: 1140408481, guid: b43d18e8e4449e1479ab990acd1584e1, type: 3}
-  defenseBuildingConfig: {fileID: 0}
+  defenseBuildingConfig: {fileID: 11400000, guid: e52a1bec2eb412b47885ea62c1f204d9, type: 2}
   enemies: []
 --- !u!212 &7767420997631037711
 SpriteRenderer:
@@ -120,9 +114,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.010926247, y: 0}
+  m_Offset: {x: 0.027754307, y: 0}
   serializedVersion: 2
-  m_Radius: 4.0462723
+  m_Radius: 5.9416127
 --- !u!50 &-3063259449612832858
 Rigidbody2D:
   serializedVersion: 4

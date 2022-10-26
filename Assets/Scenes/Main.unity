@@ -771,7 +771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   building: {fileID: 6140662680817170526, guid: 3c48c80f74420904b92e21a215cd929b, type: 3}
-  towerConfig: {fileID: 11400000, guid: 675d4a4161fc36849a1a0c1347f8bc28, type: 2}
+  towerConfig: {fileID: 11400000, guid: e52a1bec2eb412b47885ea62c1f204d9, type: 2}
   enemy: {fileID: -8760487449008663744, guid: 9d6ee7158c3dbed47b4666c34d26979d, type: 3}
   originPos: {x: 4, y: -4}
   buildingPos: {x: 2, y: -4}
