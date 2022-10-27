@@ -114,6 +114,7 @@ public class GameScene : MonoBehaviour
             OnSelectPositionPlaceBuildingConfirmEvent);
         EventManager.Register(GameEvent.UI_BuildingUpgrade, OnBuildingUpgradeEvent);
         EventManager.Register(GameEvent.UI_BuildingRemove, OnBuildingRemoveEvent);
+        EventManager.Register(GameEvent.UI_ManCountUpdate, OnManCountUpdateEvent);
     }
 
     private void OnDisable()
@@ -132,6 +133,7 @@ public class GameScene : MonoBehaviour
             OnSelectPositionPlaceBuildingConfirmEvent);
         EventManager.Unregister(GameEvent.UI_BuildingUpgrade, OnBuildingUpgradeEvent);
         EventManager.Unregister(GameEvent.UI_BuildingRemove, OnBuildingRemoveEvent);
+        EventManager.Unregister(GameEvent.UI_ManCountUpdate, OnManCountUpdateEvent);
     }
 
     private void OnGameStageUpdateEvent(object[] args)
@@ -145,6 +147,7 @@ public class GameScene : MonoBehaviour
                 waveCreator.Reset(GameDef.gameConfig.timeStageWaves[0], lastTimeStage);
                 break;
             default:
+                // todo 销毁全部的塔和实体
                 gameStart = false;
                 break;
         }
@@ -258,7 +261,7 @@ public class GameScene : MonoBehaviour
             Vector2 pos = building.transform.position;
             if (!GridManager.Inst.IsBuilding(pos, building))
                 return;
-            
+
             building.DestroySelf(); // 销毁当前的
             if (GridManager.Inst.DetectGridEnable(pos, out GameObject gridKey))
             {
@@ -280,6 +283,15 @@ public class GameScene : MonoBehaviour
             // 拆除建筑不需要任何条件
             building.DestroySelf();
             EventManager.Dispath(GameEvent.UI_BuildingRemoveComplate);
+        }
+    }
+
+    private void OnManCountUpdateEvent(object[] args)
+    {
+        float count = (float) args[0];
+        if (count <= 0) // 人都去世了，game over吧！
+        {
+            EventManager.Dispath(GameEvent.GameStageUpdate, GameStage.Failure);
         }
     }
 
