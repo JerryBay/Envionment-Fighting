@@ -53,7 +53,7 @@ public class DefenseTower : BaseBuilding
     private void OnTriggerEnter2D(Collider2D other)
     {
         BaseEnemy enemy = other.GetComponent<BaseEnemy>();
-        if (enemy && enemy.area == defenseBuildingConfig.attackArea)
+        if ((enemy != null) && (enemy.area & defenseBuildingConfig.attackArea) != 0)
         {
             if (!enemies.Contains(enemy))
             {
@@ -65,7 +65,7 @@ public class DefenseTower : BaseBuilding
     private void OnTriggerExit2D(Collider2D other)
     {
         BaseEnemy enemy = other.GetComponent<BaseEnemy>();
-        if (enemy && enemy.area == defenseBuildingConfig.attackArea)
+        if ((enemy != null) && (enemy.area & defenseBuildingConfig.attackArea) != 0)
         {
             if (enemies.Contains(enemy))
             {
