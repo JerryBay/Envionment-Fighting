@@ -30,4 +30,3 @@ MonoBehaviour:
   ammoDamage: 5
   ammoSpeed: 3
   ammoRange: 2
-  slowDown: {fileID: 9193972781736863891, guid: 5f9ef4322e764e344b12980cf39afd12, type: 3}

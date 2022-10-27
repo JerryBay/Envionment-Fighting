@@ -7,53 +7,32 @@ public class BuffManager : SingletonMono<BuffManager>
 {
     public List<BuffBase> buffs;
 
-    public delegate void BuffCall();
-
-    public BuffCall buffCall;
-    public int buffQuantity;
-
     private void Awake()
     {
         buffs = new List<BuffBase>();
-        buffCall = delegate() { };
-        buffQuantity = 0;
     }
 
-    public bool AddBuff(BuffBase buff)
+    private void Update()
     {
         for (int i = 0; i < buffs.Count; i++)
         {
-            if (buffs[i] == null)
-            {
-                buffs[i] = buff;
-                buffCall += buffs[i].BuffEffect; //添加响应函数
-                buffQuantity++;
-                buffs[i].BuffStart();
-                return true;
-            }
+            buffs[i].BuffUpdate();
         }
-
-        return false;
     }
 
-    public bool RemoveBuff(int index)
+    public void AddBuff(BuffBase buff)
     {
-        if (buffs[index] == null)
+        if (!buffs.Contains(buff))
         {
-            return false;
+            buffs.Add(buff);
         }
+    }
 
-        buffs[index].BuffEnd();
-        buffCall -= buffs[index].BuffEffect;
-        buffQuantity--;
-
-        while (index < buffs.Count)
+    public void RemoveBuff(BuffBase buff)
+    {
+        if (buffs.Contains(buff))
         {
-            buffs[index] = null;
-            buffs[index] = index + 1 >= buffs.Count ? null : buffs[index + 1];
-            index++;
+            buffs.Remove(buff);
         }
-
-        return true;
     }
 }

@@ -2,29 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuffBase
+public abstract class BuffBase
 {
     public BuffData data;
+    public int buffLevel;
 
-    public virtual void BuffStart()
-    {
-    }
+    public abstract bool BuffStart();
 
-    public virtual void BuffEffect()
-    {
-    }
+    public abstract bool BuffEffect();
 
-    public virtual void BuffEnd()
-    {
-    }
+    public abstract bool BuffEnd();
+
+    public abstract bool BuffUpdate();
 
     public void SetBuffData(BuffData inputData)
     {
-        if (data != null || inputData == null)
-        {
-            return;
-        }
-
         data = inputData;
     }
 }
