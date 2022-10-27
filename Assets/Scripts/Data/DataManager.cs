@@ -17,7 +17,7 @@ public class DataManager : SingletonMono<DataManager>
     public int population = 0;
     public float polluteRate = 0;
     public float polluteTotal = 0;
-    public float evaluation = 0;
+    public float welfare = 0;
     public int peopleDead = 0;
     
     public float gameTime = 0; // 游戏时间
@@ -27,6 +27,7 @@ public class DataManager : SingletonMono<DataManager>
     private void OnMinuteStep()
     {
         population = (int) (population * 1.01) + 20;
+        EventManager.Dispath(GameEvent.UI_ManCountUpdate,population);
     }
 
     private void OnSecondStep()
@@ -47,7 +48,8 @@ public class DataManager : SingletonMono<DataManager>
         {
             oneMinute.Update();
             oneSecond.Update();
-            evaluation = (50 + productivity * 10 - polluteRate * 2) /population * 1;
+            welfare = (50 + productivity * 10 - polluteRate * 2) /population * 1;
+            EventManager.Dispath(GameEvent.UI_WelfareUpdate, welfare);
         }
     }
 
@@ -86,5 +88,22 @@ public class DataManager : SingletonMono<DataManager>
                 gameStart = false;
                 break;
         }
+    }
+
+    public void UpdateProductivity(float value)
+    {
+        productivity += value;
+        EventManager.Dispath(GameEvent.UI_ProductivityUpdate,productivity);
+    }
+    
+    public void UpdatePolluteRate(float value)
+    {
+        polluteRate += value;
+        EventManager.Dispath(GameEvent.UI_PollutionUpdate,polluteRate);
+    }
+
+    public void UpdateManDead(int value)
+    {
+        
     }
 }

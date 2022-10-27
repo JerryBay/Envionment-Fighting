@@ -79,6 +79,7 @@ public class UIPanelMain : UIPanelBase
     private void OnProductivityUpdateEvent(object[] args)
     {
         // todo 更新生产力
+        //productionText.text = args[0] as float;
     }
 
     private void OnPollutionUpdateEvent(object[] args)

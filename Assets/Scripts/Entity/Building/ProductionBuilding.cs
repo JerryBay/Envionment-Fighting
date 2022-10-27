@@ -11,8 +11,8 @@ public class ProductionBuilding : BaseBuilding
     {
         base.Awake();
         BuildingManager.Instance.prods.Add(this);
-        DataManager.Instance.polluteRate += productionBuildingConfig.polluteRate;
-        DataManager.Instance.productivity += productionBuildingConfig.productionRate;
+        DataManager.Instance.UpdatePolluteRate(productionBuildingConfig.polluteRate);
+        DataManager.Instance.UpdateProductivity(productionBuildingConfig.productionRate);
     }
 
     protected override void OnDestroy()
@@ -20,8 +20,8 @@ public class ProductionBuilding : BaseBuilding
         GridManager.Inst.BuildingRelease(this);
         if (BuildingManager.Instance.prods.Contains(this))
         {
-            DataManager.Instance.polluteRate -= productionBuildingConfig.polluteRate;
-            DataManager.Instance.productivity -= productionBuildingConfig.productionRate;
+            DataManager.Instance.UpdatePolluteRate(-productionBuildingConfig.polluteRate);
+            DataManager.Instance.UpdateProductivity(-productionBuildingConfig.productionRate);
             BuildingManager.Instance.prods.Remove(this);
         }
 
