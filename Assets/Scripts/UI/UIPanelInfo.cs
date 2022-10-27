@@ -11,11 +11,13 @@ public class UIPanelInfo : UIPanelBase
     [SerializeField] private Text productionDescText;
     [SerializeField] private Text productionText;
     [SerializeField] private Text pollutionText;
+    [SerializeField] private Button productionBtn;
     [SerializeField] private GameObject defenseObj;
     [SerializeField] private Text defenseNameText;
     [SerializeField] private Text defenseDescText;
     [SerializeField] private Text defenseAttackText;
     [SerializeField] private Text defenseAttackAreaText;
+    [SerializeField] private Button defenseBtn;
     [SerializeField] private GameObject monsterObj;
     [SerializeField] private Text monsterNameText;
     [SerializeField] private Text monsterDescText;
@@ -61,6 +63,7 @@ public class UIPanelInfo : UIPanelBase
             productionDescText.text = config.desc;
             productionText.text = config.productionRate.ToString();
             pollutionText.text = config.polluteRate.ToString();
+            productionBtn.interactable = config.nextLevel != null;
         }
         else if (building is DefenseTower) // 更新防御建筑展示信息
         {
@@ -72,6 +75,7 @@ public class UIPanelInfo : UIPanelBase
             defenseNameText.text = config.desc;
             defenseAttackText.text = config.ammoDamage.ToString();
             defenseAttackAreaText.text = config.ammoArea.ToString();
+            defenseBtn.interactable = config.nextLevel != null;
         }
         else
         {

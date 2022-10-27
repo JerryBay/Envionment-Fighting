@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public class BuildingMenuIcon : MonoBehaviour
 {
     [SerializeField] private Image icon;
+    [SerializeField] private Text name;
     [SerializeField] private Image blackImg;
 
     private BuildingConfig building;
@@ -22,6 +23,7 @@ public class BuildingMenuIcon : MonoBehaviour
         this.containsGrid = containsGrid;
 
         icon.sprite = building.icon;
+        name.text = building.name;
 
         RefreshAvailable();
     }

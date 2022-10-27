@@ -13,16 +13,36 @@ MonoBehaviour:
   m_Name: TimeStage1
   m_EditorClassIdentifier: 
   timeStageWaves:
-  - createTime: 2
+  - waveType: 0
+    createTime: 2
     waves:
     - {fileID: 11400000, guid: a57482563bb661b41af300062ad078c7, type: 2}
-  - createTime: 4
+  - waveType: 1
+    createTime: 3
+    waves:
+    - {fileID: 11400000, guid: e557a0d47d12bf34a86bee0cdd556b61, type: 2}
+  - waveType: 0
+    createTime: 4
     waves:
     - {fileID: 11400000, guid: b9cfd18ff740b8f4b863557f88db9804, type: 2}
-  - createTime: 6
+  - waveType: 1
+    createTime: 5
+    waves:
+    - {fileID: 11400000, guid: 94d35803423b92f4a936d8bc4e466dd6, type: 2}
+  - waveType: 0
+    createTime: 6
     waves:
     - {fileID: 11400000, guid: 00150861621313341a2cfe6f5ae633fb, type: 2}
-  - createTime: 8
+  - waveType: 1
+    createTime: 7
+    waves:
+    - {fileID: 11400000, guid: dfa164d75d8865145a1dfb68a4c98065, type: 2}
+  - waveType: 0
+    createTime: 8
     waves:
     - {fileID: 11400000, guid: 98ee049bc59214d4f936ca15722fea80, type: 2}
     - {fileID: 11400000, guid: 0004ca3269924b74091864387aadcef1, type: 2}
+  - waveType: 1
+    createTime: 9
+    waves:
+    - {fileID: 11400000, guid: 5d8ede15950c1d24993a493beaee5c92, type: 2}

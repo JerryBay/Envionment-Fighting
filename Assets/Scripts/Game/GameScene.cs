@@ -255,7 +255,7 @@ public class GameScene : MonoBehaviour
             building.DestroySelf(); // 销毁当前的
             if (GridManager.Inst.DetectGridEnable(pos, out GameObject gridKey))
             {
-                BaseBuilding b = BuildingManager.Instance.Spawn(buildingConfig, pos);
+                BaseBuilding b = BuildingManager.Instance.Spawn(nextLevel, pos);
                 GridManager.Inst.BuildingSeize(gridKey, b);
                 EventManager.Dispath(GameEvent.UI_BuildingUpgradeComplate);
             }
@@ -279,11 +279,11 @@ public class GameScene : MonoBehaviour
         DestroyBuildingGhost();
 
         var obj = new GameObject($"buindingGhost-{config.name}");
-        obj.transform.localScale = Vector3.one * 0.5f;
         buindingGhostSpr = obj.AddComponent<SpriteRenderer>();
         buindingGhostSpr.sprite = config.icon;
         buindingGhostSpr.sortingOrder = 10;
-        buindingGhostSpr.drawMode = SpriteDrawMode.Simple;
+        buindingGhostSpr.drawMode = SpriteDrawMode.Sliced;
+        buindingGhostSpr.size = GameDef.gridSize;
         obj.transform.position = pos;
     }
 

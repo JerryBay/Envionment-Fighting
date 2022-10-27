@@ -25,6 +25,7 @@ public class BaseBuilding : MonoBehaviour
     // 销毁该建筑
     public void DestroySelf()
     {
+        GridManager.Inst.BuildingRelease(this);
         GameObject.Destroy(gameObject);
     }
 }

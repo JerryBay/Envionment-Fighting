@@ -15,10 +15,11 @@ MonoBehaviour:
   buildings:
   - buildingType: 0
     buildings:
-    - {fileID: 11400000, guid: 8b72776951f9ab847abe2d1639fd8d62, type: 2}
+    - {fileID: 11400000, guid: 1f604f010a27a6e40b9866041560bea4, type: 2}
   - buildingType: 1
     buildings:
-    - {fileID: 11400000, guid: 675d4a4161fc36849a1a0c1347f8bc28, type: 2}
+    - {fileID: 11400000, guid: 3eec7ac0fc130eb46b9a86b112667c59, type: 2}
   timeStageWaves:
   - {fileID: 11400000, guid: a4e86dbfd46973048949ed0aba04f388, type: 2}
   timeStageStepMinute: 10
+  polluteToMonsterUnit: 10

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class WaveCreator
 {
@@ -44,9 +45,18 @@ public class WaveCreator
             float localTime = (DataManager.Instance.gameTime - timeOffset) / 60f;
             if (localTime >= curWave.createTime)
             {
-                for (int i = 0; i < curWave.waves.Length; i++)
+                switch (curWave.waveType)
                 {
-                    StartCreateEnemy(curWave.waves[i]);
+                    case WaveType.Normal:
+                        for (int i = 0; i < curWave.waves.Length; i++)
+                            StartCreateEnemy(curWave.waves[i]);
+                        break;
+                    case WaveType.Pollute:
+                        // 通过消耗污染值生成的怪物就一波就好了，调用多次木有意义
+                        if (curWave.waves.Length > 0)
+                            StartPolluteCreateEnemy(curWave.waves[0]);
+                        break;
+                    default: break;
                 }
 
                 if (waveQue.Count > 0)
@@ -54,6 +64,24 @@ public class WaveCreator
                 else curWave = null;
             }
         }
+    }
+
+    // 减少当前消耗当前污染值生成怪物
+    private void StartPolluteCreateEnemy(WaveConfig waveConfig)
+    {
+        int count = Mathf.FloorToInt(DataManager.Instance.polluteTotal / GameDef.gameConfig.polluteToMonsterUnit);
+        if (count <= 0) return;
+        DataManager.Instance.polluteTotal -= count;
+        EventManager.Dispath(GameEvent.UI_PollutionUpdate);
+        Debug.Log($"通过消耗{count * GameDef.gameConfig.polluteToMonsterUnit}点污染值生成有{count}只的怪物波次");
+
+        WaveConfig newWave = new WaveConfig();
+        newWave.enemyType = waveConfig.enemyType;
+        newWave.count = count;
+        newWave.route = waveConfig.route;
+        newWave.interval = waveConfig.interval;
+
+        StartCreateEnemy(newWave);
     }
 
     // 开始生成怪物

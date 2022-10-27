@@ -10,6 +10,7 @@ public class TimeStageWaveConfig : ScriptableObject
 [Serializable]
 public class TimeStageWaveSingle
 {
+    public WaveType waveType; // 波次创建类型
     public float createTime; // 生成时长 (分钟)
     public WaveConfig[] waves; // 波次
 }

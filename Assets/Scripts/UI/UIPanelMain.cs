@@ -27,14 +27,14 @@ public class UIPanelMain : UIPanelBase
 
     private void Update()
     {
-        // 测试效果
-        productionPro.fillAmount = Mathf.Abs(Mathf.Sin(Time.time));
-        productionText.text = $"{(int) (productionPro.fillAmount * 7f)}/s";
-        pollutionPro.fillAmount = Mathf.Abs(Mathf.Cos(Time.time + Mathf.PI / 3));
-        pollutionText.text = $"{(int) (pollutionPro.fillAmount * 36f)}/s";
-        welfarePro.fillAmount = Mathf.Abs(Mathf.Sin(Time.time + Mathf.PI / 6));
-        welfareText.text = $"{(int) (welfarePro.fillAmount * 86f)}/s";
-        welfareDeathSpeed.text = $"{(int) ((1 - welfarePro.fillAmount) * 10f)}/s";
+        // // 测试效果
+        // productionPro.fillAmount = Mathf.Abs(Mathf.Sin(Time.time));
+        // productionText.text = $"{(int) (productionPro.fillAmount * 7f)}/s";
+        // pollutionPro.fillAmount = Mathf.Abs(Mathf.Cos(Time.time + Mathf.PI / 3));
+        // pollutionText.text = $"{(int) (pollutionPro.fillAmount * 36f)}/s";
+        // welfarePro.fillAmount = Mathf.Abs(Mathf.Sin(Time.time + Mathf.PI / 6));
+        // welfareText.text = $"{(int) (welfarePro.fillAmount * 86f)}/s";
+        // welfareDeathSpeed.text = $"{(int) ((1 - welfarePro.fillAmount) * 10f)}/s";
     }
 
     protected override void OnShow()
@@ -79,7 +79,7 @@ public class UIPanelMain : UIPanelBase
     private void OnProductivityUpdateEvent(object[] args)
     {
         // todo 更新生产力
-        //productionText.text = args[0] as float;
+        productionText.text = ((float)args[0]).ToString();
     }
 
     private void OnPollutionUpdateEvent(object[] args)

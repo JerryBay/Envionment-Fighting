@@ -55,3 +55,12 @@ public enum BuildingType : byte
     Production = 0, // 生产建筑
     Defense = 1, // 防御建筑
 }
+
+/// <summary>
+/// 波次类型
+/// </summary>
+public enum WaveType : byte
+{
+    Normal = 0, // 正常
+    Pollute, // 使用污染度
+}
