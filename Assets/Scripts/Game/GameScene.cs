@@ -139,16 +139,16 @@ public class GameScene : MonoBehaviour
     private void OnGameStageUpdateEvent(object[] args)
     {
         GameStage stage = (GameStage) args[0];
+        GameGlobal.GameStage = stage;
         switch (stage)
         {
             case GameStage.Playing: // 开始游戏
                 gameStart = true;
                 lastTimeStage = TimeStage.Cultivation;
                 waveCreator.Reset(GameDef.gameConfig.timeStageWaves[0], lastTimeStage);
-
                 break;
             default:
-                // todo 销毁全部的塔和实体
+                waveCreator.Stop();
                 isSelectBuildingPosition = false;
                 isSelectPositionBuilding = false;
                 EnemyManager.Instance.DestroyAll();

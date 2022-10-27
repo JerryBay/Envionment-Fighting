@@ -16,6 +16,16 @@ public class WaveCreator
     }
 
     /// <summary>
+    /// 停止生成
+    /// </summary>
+    public void Stop()
+    {
+        enemyCreators.Clear();
+        waveQue.Clear();
+        curWave = null;
+    }
+
+    /// <summary>
     /// 重置波次数据
     /// </summary>
     public void Reset(TimeStageWaveConfig timeStageWaves, TimeStage timeStage)

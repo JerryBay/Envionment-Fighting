@@ -33,8 +33,9 @@ public enum GameEvent
 /// <summary>
 /// 游戏阶段
 /// </summary>
-public enum GameStage : byte
+public enum GameStage : sbyte
 {
+    None = -1,
     MainMenu = 0, // 主菜单
     Playing, // 正在玩
     Success, // 成功
