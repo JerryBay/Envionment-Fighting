@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ae6089eb3984661983e45e336684556, type: 3}
+  m_Name: Wave1-2-pollute
+  m_EditorClassIdentifier: 
+  enemyType: {fileID: -8760487449008663744, guid: 9d6ee7158c3dbed47b4666c34d26979d, type: 3}
+  route: {fileID: 8068140604297976312, guid: c1eebfd7bc9a79b43a618556664e7c7e, type: 3}
+  count: 6
+  interval: 3
