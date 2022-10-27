@@ -145,9 +145,12 @@ public class GameScene : MonoBehaviour
                 gameStart = true;
                 lastTimeStage = TimeStage.Cultivation;
                 waveCreator.Reset(GameDef.gameConfig.timeStageWaves[0], lastTimeStage);
+
                 break;
             default:
                 // todo 销毁全部的塔和实体
+                isSelectBuildingPosition = false;
+                isSelectPositionBuilding = false;
                 EnemyManager.Instance.DestroyAll();
                 BuildingManager.Instance.DestroyAll();
                 gameStart = false;
