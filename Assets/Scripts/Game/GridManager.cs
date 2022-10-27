@@ -58,6 +58,14 @@ public class GridManager
     }
 
     /// <summary>
+    /// 检查格子是否可用
+    /// </summary>
+    public bool DetectGridEnable(GameObject gridKey)
+    {
+        return buildingsMap.TryGetValue(gridKey, out BaseBuilding b) && b == null;
+    }
+
+    /// <summary>
     /// 建筑占用格子
     /// </summary>
     public bool BuildingSeize(GameObject gridKey, BaseBuilding building)

@@ -1,19 +1,29 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework.Constraints;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GameScene : MonoBehaviour
 {
     // 此类负责处理游戏场景中的事件
 
     private BuildingConfig buildingConfig;
+    private GameObject buildingSelectGrid;
     private SpriteRenderer buindingGhostSpr;
-    private bool isSelectBuildingPosition; // 是否正在选择建筑放置位置
+    private bool isSelectBuildingPosition; // 是否正在选择建筑要放置的位置
+    private bool isSelectPositionBuilding; // 是否正在选择位置要放置的建筑
 
     private WaveCreator waveCreator;
     private bool gameStart;
     private TimeStage lastTimeStage;
+
+    // private void OnGUI()
+    // {
+    //     GUILayout.Label($"isSelectBuildingPosition:{isSelectBuildingPosition}");
+    //     GUILayout.Label($"buildingSelectGrid:{buildingSelectGrid}");
+    // }
 
     public void Awake()
     {
@@ -52,10 +62,8 @@ public class GameScene : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                if (gridKey != null)
+                if (TryBuilding(pos, buildingConfig))
                 {
-                    BaseBuilding building = BuildingManager.Instance.Spawn(buildingConfig, pos);
-                    GridManager.Inst.BuildingSeize(gridKey, building);
                     EventManager.Dispath(GameEvent.UI_SelectBuildingPlacePositionStop, true);
                 }
             }
@@ -64,7 +72,8 @@ public class GameScene : MonoBehaviour
                 EventManager.Dispath(GameEvent.UI_SelectBuildingPlacePositionStop, false);
             }
         }
-        else // 木有在放置过程的话就可以点击呼出建筑菜单
+        else if (!isSelectPositionBuilding &&
+                 !EventSystem.current.IsPointerOverGameObject()) // 木有在放置过程的话就可以点击呼出建筑菜单
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -76,6 +85,16 @@ public class GameScene : MonoBehaviour
                     if (building != null)
                         UIManager.Inst.OpenUIPanel<UIPanelInfo>().ShowBuildingInfo(building);
                 }
+                else
+                {
+                    hitInfo = Physics2D.Raycast(pos, Vector2.right, 0.001f, 1 << LayerUtility.Grid);
+                    if (hitInfo.collider != null)
+                    {
+                        if (GridManager.Inst.DetectGridEnable(hitInfo.collider.gameObject))
+                            EventManager.Dispath(GameEvent.UI_SelectPositionPlaceBuildingStart,
+                                hitInfo.collider.gameObject);
+                    }
+                }
             }
         }
     }
@@ -86,6 +105,13 @@ public class GameScene : MonoBehaviour
         EventManager.Register(GameEvent.GameTimeUpdate, OnGameTimeUpdateEvent);
         EventManager.Register(GameEvent.UI_SelectBuildingPlacePositionStart, OnSelectBuildingPlacePositionStartEvent);
         EventManager.Register(GameEvent.UI_SelectBuildingPlacePositionStop, OnSelectBuildingPlacePositionStopEvent);
+        EventManager.Register(GameEvent.UI_SelectBuildingPlacePositionConfirm,
+            OnSelectBuildingPlacePositionConfirmEvent);
+        EventManager.Register(GameEvent.UI_SelectPositionPlaceBuildingStart, OnSelectPositionPlaceBuildingStartEvent);
+        EventManager.Register(GameEvent.UI_SelectPositionPlaceBuildingStop, OnSelectPositionPlaceBuildingStopEvent);
+        EventManager.Register(GameEvent.UI_SelectPositionPlaceBuildingUpdate, OnSelectPositionPlaceBuildingUpdateEvent);
+        EventManager.Register(GameEvent.UI_SelectPositionPlaceBuildingConfirm,
+            OnSelectPositionPlaceBuildingConfirmEvent);
         EventManager.Register(GameEvent.UI_BuildingUpgrade, OnBuildingUpgradeEvent);
         EventManager.Register(GameEvent.UI_BuildingRemove, OnBuildingRemoveEvent);
     }
@@ -96,6 +122,14 @@ public class GameScene : MonoBehaviour
         EventManager.Unregister(GameEvent.GameTimeUpdate, OnGameTimeUpdateEvent);
         EventManager.Unregister(GameEvent.UI_SelectBuildingPlacePositionStart, OnSelectBuildingPlacePositionStartEvent);
         EventManager.Unregister(GameEvent.UI_SelectBuildingPlacePositionStop, OnSelectBuildingPlacePositionStopEvent);
+        EventManager.Unregister(GameEvent.UI_SelectBuildingPlacePositionConfirm,
+            OnSelectBuildingPlacePositionConfirmEvent);
+        EventManager.Unregister(GameEvent.UI_SelectPositionPlaceBuildingStart, OnSelectPositionPlaceBuildingStartEvent);
+        EventManager.Unregister(GameEvent.UI_SelectPositionPlaceBuildingStop, OnSelectPositionPlaceBuildingStopEvent);
+        EventManager.Unregister(GameEvent.UI_SelectPositionPlaceBuildingUpdate,
+            OnSelectPositionPlaceBuildingUpdateEvent);
+        EventManager.Unregister(GameEvent.UI_SelectPositionPlaceBuildingConfirm,
+            OnSelectPositionPlaceBuildingConfirmEvent);
         EventManager.Unregister(GameEvent.UI_BuildingUpgrade, OnBuildingUpgradeEvent);
         EventManager.Unregister(GameEvent.UI_BuildingRemove, OnBuildingRemoveEvent);
     }
@@ -128,26 +162,77 @@ public class GameScene : MonoBehaviour
     private void OnSelectBuildingPlacePositionStartEvent(object[] args)
     {
         buildingConfig = (BuildingConfig) args[0];
+        buildingSelectGrid = null;
         isSelectBuildingPosition = true;
-        if (buindingGhostSpr == null)
-        {
-            var obj = new GameObject($"buindingGhost-{buildingConfig.name}");
-            obj.transform.localScale = Vector3.one * 0.5f;
-            buindingGhostSpr = obj.AddComponent<SpriteRenderer>();
-            buindingGhostSpr.sprite = buildingConfig.icon;
-            buindingGhostSpr.sortingOrder = 10;
-            buindingGhostSpr.drawMode = SpriteDrawMode.Simple;
-            Vector2 pos = GameGlobal.MainCamera.ScreenToWorldPoint(Input.mousePosition);
-            obj.transform.position = pos;
-        }
+
+        Vector2 pos = GameGlobal.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+        CreateBuildingGhost(buildingConfig, pos);
     }
 
     private void OnSelectBuildingPlacePositionStopEvent(object[] args)
     {
-        buildingConfig = default;
+        buildingConfig = null;
         isSelectBuildingPosition = false;
-        if (buindingGhostSpr != null)
-            GameObject.Destroy(buindingGhostSpr.gameObject);
+        DestroyBuildingGhost();
+    }
+
+    private void OnSelectBuildingPlacePositionConfirmEvent(object[] args)
+    {
+        if (!isSelectBuildingPosition)
+            return;
+        Vector2 pos = GameGlobal.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+        if (TryBuilding(pos, buildingConfig))
+        {
+            EventManager.Dispath(GameEvent.UI_SelectBuildingPlacePositionStop, true);
+        }
+        else
+        {
+            EventManager.Dispath(GameEvent.UI_SelectBuildingPlacePositionStop, false);
+        }
+    }
+
+    private void OnSelectPositionPlaceBuildingStartEvent(object[] args)
+    {
+        buildingSelectGrid = args[0] as GameObject;
+        isSelectPositionBuilding = true;
+    }
+
+    private void OnSelectPositionPlaceBuildingStopEvent(object[] args)
+    {
+        buildingSelectGrid = null;
+        DestroyBuildingGhost();
+        isSelectPositionBuilding = false;
+    }
+
+    private void OnSelectPositionPlaceBuildingUpdateEvent(object[] args)
+    {
+        if (!isSelectPositionBuilding) return;
+        DestroyBuildingGhost();
+
+        if (args[0] != null)
+        {
+            BuildingConfig config = args[0] as BuildingConfig;
+            CreateBuildingGhost(config, buildingSelectGrid.transform.position);
+
+            if (GridManager.Inst.DetectGridEnable(buildingSelectGrid))
+                buindingGhostSpr.color = new Color(1, 1, 1, 1);
+            else buindingGhostSpr.color = new Color(1, 0, 0, .4f);
+        }
+    }
+
+    private void OnSelectPositionPlaceBuildingConfirmEvent(object[] args)
+    {
+        if (!isSelectPositionBuilding) return;
+
+        BuildingConfig building = args[0] as BuildingConfig;
+        if (building != null)
+        {
+            if (TryBuilding(buildingSelectGrid, building))
+            {
+                buildingSelectGrid = null;
+                EventManager.Dispath(GameEvent.UI_SelectPositionPlaceBuildingStop, true);
+            }
+        }
     }
 
     private void OnBuildingUpgradeEvent(object[] args)
@@ -186,5 +271,59 @@ public class GameScene : MonoBehaviour
             building.DestroySelf();
             EventManager.Dispath(GameEvent.UI_BuildingRemoveComplate);
         }
+    }
+
+    // 创建建筑残影
+    private void CreateBuildingGhost(BuildingConfig config, Vector2 pos)
+    {
+        DestroyBuildingGhost();
+
+        var obj = new GameObject($"buindingGhost-{config.name}");
+        obj.transform.localScale = Vector3.one * 0.5f;
+        buindingGhostSpr = obj.AddComponent<SpriteRenderer>();
+        buindingGhostSpr.sprite = config.icon;
+        buindingGhostSpr.sortingOrder = 10;
+        buindingGhostSpr.drawMode = SpriteDrawMode.Simple;
+        obj.transform.position = pos;
+    }
+
+    // 销毁建筑残影
+    private void DestroyBuildingGhost()
+    {
+        if (buindingGhostSpr != null)
+        {
+            GameObject.Destroy(buindingGhostSpr.gameObject);
+            buindingGhostSpr = null;
+        }
+    }
+
+    // 尝试建造建筑
+    private bool TryBuilding(Vector2 pos, BuildingConfig config)
+    {
+        // todo 判定货币是否足够
+
+        if (GridManager.Inst.DetectGridEnable(pos, out GameObject gridKey))
+        {
+            BaseBuilding building = BuildingManager.Instance.Spawn(buildingConfig, gridKey.transform.position);
+            GridManager.Inst.BuildingSeize(gridKey, building);
+            return true;
+        }
+
+        return false;
+    }
+
+    // 尝试建造建筑
+    private bool TryBuilding(GameObject gridKey, BuildingConfig config)
+    {
+        // todo 判定货币是否足够
+
+        if (GridManager.Inst.DetectGridEnable(gridKey))
+        {
+            BaseBuilding building = BuildingManager.Instance.Spawn(config, gridKey.transform.position);
+            GridManager.Inst.BuildingSeize(gridKey, building);
+            return true;
+        }
+
+        return false;
     }
 }

@@ -16,8 +16,13 @@ public enum GameEvent
     UI_OpenBuildingMenu, // 打开建筑菜单
     UI_CloseBuildingMenu, // 关闭建筑分组
     UI_BuildingMenuTypeChanged, // 建筑菜单分组切换
-    UI_SelectBuildingPlacePositionStart, // 开始选择建筑放置位置
-    UI_SelectBuildingPlacePositionStop, // 停止选择建筑放置位置
+    UI_SelectBuildingPlacePositionStart, // 开始选择建筑放置的位置
+    UI_SelectBuildingPlacePositionStop, // 停止选择建筑放置的位置
+    UI_SelectBuildingPlacePositionConfirm, // 选择建筑放置的位置确定
+    UI_SelectPositionPlaceBuildingStart, // 开始选择位置放置的建筑
+    UI_SelectPositionPlaceBuildingStop, // 停止选择位置放置的建筑
+    UI_SelectPositionPlaceBuildingUpdate, // 选择位置放置的建筑更新
+    UI_SelectPositionPlaceBuildingConfirm, // 选择位置放置的建筑确定
     UI_BuildingUpgrade, // 升级建筑
     UI_BuildingRemove, // 拆除建筑
     UI_BuildingUpgradeComplate, // 建筑升级成功

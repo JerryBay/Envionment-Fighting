@@ -12,8 +12,18 @@ public class UIPanelMainBuildingMenu : MonoBehaviour
     [SerializeField] private Transform buildingIconTr;
     [SerializeField] private GameObject buildingIconPrefab;
 
+    private bool containsGrid;
+    private BuildingType lastShowBuildingType;
+
+    private void Awake()
+    {
+        // 默认显示生产类型的建筑
+        lastShowBuildingType = BuildingType.Production;
+        containsGrid = false;
+    }
+
     // 刷新建筑图标
-    private void ShowBuildingsIcon(BuildingType tp)
+    private void RefreshBuildingsIcon(BuildingType tp, bool containsGrid)
     {
         // 设置按钮可点击状态
         productionBtn.interactable = !(tp == BuildingType.Production);
@@ -34,9 +44,12 @@ public class UIPanelMainBuildingMenu : MonoBehaviour
         {
             go = GameObject.Instantiate(buildingIconPrefab, buildingIconTr);
             btn = go.GetComponent<BuildingMenuIcon>();
-            btn.Init(buildings[i], i);
+            btn.Init(buildings[i], i, containsGrid);
             go.SetActive(true);
         }
+
+        this.containsGrid = containsGrid;
+        lastShowBuildingType = tp;
     }
 
     private void OnEnable()
@@ -46,6 +59,8 @@ public class UIPanelMainBuildingMenu : MonoBehaviour
         EventManager.Register(GameEvent.UI_BuildingMenuTypeChanged, OnBuildingMenuTypeChangedEvent);
         EventManager.Register(GameEvent.UI_SelectBuildingPlacePositionStart, OnSelectBuildingPlacePositionStartEvent);
         EventManager.Register(GameEvent.UI_SelectBuildingPlacePositionStop, OnSelectBuildingPlacePositionStopEvent);
+        EventManager.Register(GameEvent.UI_SelectPositionPlaceBuildingStart, OnSelectPositionPlaceBuildingStartEvent);
+        EventManager.Register(GameEvent.UI_SelectPositionPlaceBuildingStop, OnSelectPositionPlaceBuildingStopEvent);
 
         buildAnimator.Play("HideBuildingMenu", 0, 1);
     }
@@ -61,20 +76,21 @@ public class UIPanelMainBuildingMenu : MonoBehaviour
 
     private void OnOpenBuildingMenuEvent(object[] args)
     {
-        // 默认显示生产类型的建筑
-        ShowBuildingsIcon(BuildingType.Production);
+        RefreshBuildingsIcon(lastShowBuildingType, false);
         buildAnimator.Play("ShowBuildingMenu");
     }
 
     private void OnCloseBuildingMenuEvent(object[] args)
     {
         buildAnimator.Play("HideBuildingMenu");
+        if(containsGrid)
+            EventManager.Dispath(GameEvent.UI_SelectPositionPlaceBuildingStop, false);
     }
 
     private void OnBuildingMenuTypeChangedEvent(object[] args)
     {
         BuildingType tp = (BuildingType) args[0];
-        ShowBuildingsIcon(tp);
+        RefreshBuildingsIcon(tp, containsGrid);
     }
 
     private void OnSelectBuildingPlacePositionStartEvent(object[] args)
@@ -84,9 +100,22 @@ public class UIPanelMainBuildingMenu : MonoBehaviour
 
     private void OnSelectBuildingPlacePositionStopEvent(object[] args)
     {
+        RefreshBuildingsIcon(lastShowBuildingType, false);
         if ((bool) args[0])
             buildAnimator.Play("TempoShowOnlyButton");
         else buildAnimator.Play("TempShow");
+    }
+
+    private void OnSelectPositionPlaceBuildingStartEvent(object[] args)
+    {
+        RefreshBuildingsIcon(lastShowBuildingType, true);
+        buildAnimator.Play("ShowBuildingMenu");
+    }
+
+    private void OnSelectPositionPlaceBuildingStopEvent(object[] args)
+    {
+        RefreshBuildingsIcon(lastShowBuildingType, false);
+        buildAnimator.Play("HideBuildingMenu");
     }
 
     public void OnProductionButtonClick()
