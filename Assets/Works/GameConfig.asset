@@ -21,5 +21,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3eec7ac0fc130eb46b9a86b112667c59, type: 2}
   timeStageWaves:
   - {fileID: 11400000, guid: a4e86dbfd46973048949ed0aba04f388, type: 2}
+  - {fileID: 11400000, guid: ee0b97cd76a0a504785fbd235d051d70, type: 2}
+  - {fileID: 11400000, guid: ed0fe71d309c47e49a9ac2791bb85a7b, type: 2}
   timeStageStepMinute: 10
   polluteToMonsterUnit: 10

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae6089eb3984661983e45e336684556, type: 3}
   m_Name: Wave1-4-p2
   m_EditorClassIdentifier: 
-  enemyType: {fileID: -8760487449008663744, guid: 9d6ee7158c3dbed47b4666c34d26979d, type: 3}
+  enemyType: {fileID: -8760487449008663744, guid: aabce0586acdd674098c83dd5620fbce, type: 3}
   route: {fileID: 7655639058019941850, guid: 4264312b51418284da7cb7be7dc73769, type: 3}
   count: 5
   interval: 3

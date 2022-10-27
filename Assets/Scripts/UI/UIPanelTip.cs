@@ -9,10 +9,7 @@ public class UIPanelTip : UIPanelBase
     [SerializeField] private Animator animator;
     [SerializeField] private Text titleText;
     [SerializeField] private Text textText;
-    [SerializeField] private Image progress;
-    [SerializeField] private float maxShowTime;
 
-    private float curShowTime;
     private bool closeAvailable;
 
     protected override void OnShow()
@@ -29,13 +26,11 @@ public class UIPanelTip : UIPanelBase
     {
         if (closeAvailable)
         {
-            if ((curShowTime += Time.unscaledDeltaTime) >= maxShowTime ||
-                Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 HideTip();
                 closeAvailable = false;
             }
-            progress.fillAmount = 1 - Mathf.Clamp01(curShowTime / maxShowTime);
         }
     }
 
@@ -58,8 +53,6 @@ public class UIPanelTip : UIPanelBase
         titleText.text = title;
         textText.text = text;
         closeAvailable = false;
-        curShowTime = 0;
-        progress.fillAmount = 1;
         animator.Play("Show");
     }
 
@@ -71,7 +64,6 @@ public class UIPanelTip : UIPanelBase
     public void AnimEvent_CloseAvailable()
     {
         closeAvailable = true;
-        curShowTime = 0;
     }
 
     public void AnimEvent_Hide()

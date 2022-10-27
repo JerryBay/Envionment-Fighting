@@ -3438,6 +3438,7 @@ MonoBehaviour:
   welfarePro: {fileID: 595358955}
   welfareText: {fileID: 4380274}
   welfareDeathSpeed: {fileID: 0}
+  money: {fileID: 845547372}
   man: {fileID: 418571892226942008}
   deathMan: {fileID: 4910605508379999554}
   difficulty: {fileID: 783221175}

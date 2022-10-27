@@ -44,10 +44,6 @@ public class DataManager : SingletonMono<DataManager>
 
     private void Awake()
     {
-        EventManager.Dispath(GameEvent.UI_ProductivityUpdate,productivity);
-        EventManager.Dispath(GameEvent.UI_PollutionUpdate,polluteRate);
-        EventManager.Dispath(GameEvent.UI_ManCountUpdate,population);
-        EventManager.Dispath(GameEvent.UI_DeathManCountUpdate,peopleDead);
     }
 
     private void Update()
@@ -91,6 +87,11 @@ public class DataManager : SingletonMono<DataManager>
                 gameTime = 0;
                 timeStage = TimeStage.Cultivation;
                 EventManager.Dispath(GameEvent.GameTimeUpdate, 0);
+
+                EventManager.Dispath(GameEvent.UI_ProductivityUpdate,productivity);
+                EventManager.Dispath(GameEvent.UI_PollutionUpdate,polluteRate);
+                EventManager.Dispath(GameEvent.UI_ManCountUpdate,population);
+                EventManager.Dispath(GameEvent.UI_DeathManCountUpdate,peopleDead);
                 break;
             default:
                 gameStart = false;

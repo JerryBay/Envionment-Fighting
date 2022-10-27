@@ -16,6 +16,7 @@ public class UIPanelMain : UIPanelBase
     [SerializeField] private Image welfarePro; // 生活水准进度
     [SerializeField] private Text welfareText; // 生活水准文字
     [SerializeField] private Text welfareDeathSpeed; // 污染情况死亡速度
+    [SerializeField] private Text money;
     [SerializeField] private Text man; // 人口
     [SerializeField] private Text deathMan; // 死亡人口
     [SerializeField] private Text difficulty; // 难度
@@ -41,6 +42,7 @@ public class UIPanelMain : UIPanelBase
     {
         // 注册ui事件
         EventManager.Register(GameEvent.GameTimeUpdate, OnGameTimeUpdateEvent);
+        EventManager.Register(GameEvent.MoneyUpdate, OnMoneyUpdateEvent);
         EventManager.Register(GameEvent.UI_ProductivityUpdate, OnProductivityUpdateEvent);
         EventManager.Register(GameEvent.UI_PollutionUpdate, OnPollutionUpdateEvent);
         EventManager.Register(GameEvent.UI_WelfareUpdate, OnWelfareUpdateEvent);
@@ -56,6 +58,7 @@ public class UIPanelMain : UIPanelBase
     {
         // 注销ui事件
         EventManager.Unregister(GameEvent.GameTimeUpdate, OnGameTimeUpdateEvent);
+        EventManager.Unregister(GameEvent.MoneyUpdate, OnMoneyUpdateEvent);
         EventManager.Unregister(GameEvent.UI_ProductivityUpdate, OnProductivityUpdateEvent);
         EventManager.Unregister(GameEvent.UI_PollutionUpdate, OnPollutionUpdateEvent);
         EventManager.Unregister(GameEvent.UI_WelfareUpdate, OnWelfareUpdateEvent);
@@ -76,6 +79,11 @@ public class UIPanelMain : UIPanelBase
         age.text = timeStageNames[(int) DataManager.Instance.timeStage];
     }
 
+    private void OnMoneyUpdateEvent(object[] args)
+    {
+        money.text = args[0].ToString();
+    }
+
     private void OnProductivityUpdateEvent(object[] args)
     {
         // todo 更新生产力
@@ -85,25 +93,23 @@ public class UIPanelMain : UIPanelBase
     private void OnPollutionUpdateEvent(object[] args)
     {
         // todo 更新污染情况
-        pollutionText.text = args[0] as string;
+        pollutionText.text = args[0].ToString();
     }
 
     private void OnWelfareUpdateEvent(object[] args)
     {
         // todo 更新生活水准
-        welfareText.text = args[0] as string;
+        welfareText.text = args[0].ToString();
     }
 
     private void OnManCountUpdateEvent(object[] args)
     {
-        // todo 更新人口
-        man.text = args[0] as string;
+        man.text = args[0].ToString();
     }
 
     private void OnDeathManCountUpdateEvent(object[] args)
     {
-        // todo 更新死亡人口
-        deathMan.text = args[0] as string;
+        deathMan.text = args[0].ToString();
     }
 
     private void OnSelectBuildingPlacePositionStartEvent(object[] args)
