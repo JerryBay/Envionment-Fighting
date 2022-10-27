@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf9a52c024944058f79198a4955d4c2, type: 3}
+  m_Name: "\u5DE5\u5382_Lv2"
+  m_EditorClassIdentifier: 
+  type: 0
+  name: "\u673A\u68B0\u5316\u519C\u7530"
+  desc: "\u673A\u68B0\u5316\u8015\u5730\uFF0C\u751F\u4EA7\u6548\u7387\u63D0\u5347\uFF0C\u4F46\u6C61\u67D3\u4E5F\u63D0\u5347\u4E86"
+  icon: {fileID: 21300000, guid: af1064b039f658c4db44fdc64352b389, type: 3}
+  prefab: {fileID: 2325336990936241479, guid: 4254da84e34a17e409f2768bfa8156ce, type: 3}
+  cost: 250
+  level: 2
+  rarity: 1
+  nextLevel: {fileID: 0}
+  productionRate: 10
+  polluteRate: 3
