@@ -112,7 +112,23 @@ public class DataManager : SingletonMono<DataManager>
 
     public void UpdatePopulation(float value)
     {
-        population += value;
+        if (value < 0)
+        {
+            if (population + value < 0)
+            {
+                population = 0;
+                UpdateManDead(population);
+            }
+            else
+            {
+                population += value;
+                UpdateManDead(-value);
+            }
+        }
+        else
+        {
+            population += value;
+        }
         EventManager.Dispath(GameEvent.UI_ManCountUpdate,population);
     }
 

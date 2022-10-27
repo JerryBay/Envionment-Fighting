@@ -36,7 +36,6 @@ public class EnemyManager : SingletonMono<EnemyManager>
         }
         
         DataManager.Instance.UpdatePopulation(-damage);
-        DataManager.Instance.UpdateManDead(damage);
     }
 
     public void Spawn(WaveConfig config, Vector2 pos)
