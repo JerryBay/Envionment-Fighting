@@ -22,9 +22,11 @@ public class DefenseTower : BaseBuilding
     public float ammoSpeed;
     public AmmoType ammoType;
     public float ammoRange;
-    
+
+    public SlowDown slowDown;
+
     public List<BaseEnemy> enemies = new List<BaseEnemy>();
-    private float _timer = 0;
+    public IntervalTimer intTimer;
 
     protected override void Awake()
     {
@@ -38,12 +40,7 @@ public class DefenseTower : BaseBuilding
 
     private void Update()
     {
-        _timer += Time.deltaTime;
-        if (enemies.Count > 0 && _timer >= attackInterval)
-        {
-            _timer = 0;
-            Attack(enemies[0]);
-        }
+        intTimer.Update();
     }
 
     protected override void OnDestroy()
@@ -73,6 +70,17 @@ public class DefenseTower : BaseBuilding
         ammoDamage = defenseBuildingConfig.ammoDamage;
         ammoSpeed = defenseBuildingConfig.ammoSpeed;
         ammoRange = defenseBuildingConfig.ammoRange;
+
+        slowDown = defenseBuildingConfig.slowDown;
+
+        intTimer = new IntervalTimer(attackInterval);
+        intTimer.action = () =>
+        {
+            if (enemies.Count > 0)
+            {
+                Attack(enemies[0]);
+            }
+        };
     }
 
     private void UpdateEnemies()
@@ -115,6 +123,7 @@ public class DefenseTower : BaseBuilding
         if (enemies[0] == null)
         {
             UpdateEnemies();
+            return;
         }
 
         if (enemies.Count > 0)
@@ -127,6 +136,7 @@ public class DefenseTower : BaseBuilding
             bullet.range = ammoRange;
             bullet.originTower = this;
             bullet.targetEnemy = enemy;
+            bullet.slowDown = slowDown;
         }
     }
 }

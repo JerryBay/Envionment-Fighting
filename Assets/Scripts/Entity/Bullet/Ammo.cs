@@ -12,6 +12,8 @@ public class Ammo : MonoBehaviour
     public float range;
     public float speed;
     public float damage;
+    public SlowDown slowDown;
+    
 
     public GameObject explosionEffectPrefab;
 
@@ -40,6 +42,11 @@ public class Ammo : MonoBehaviour
                         if ((enemies[i].area & area) != 0)
                         {
                             enemies[i].TakeDamage(damage);
+                            if (slowDown)
+                            {
+                                var inst = Instantiate(slowDown,enemies[i].transform);
+                                inst.Attach(enemies[i]);
+                            }
                         }
                     }
                 }
@@ -47,6 +54,11 @@ public class Ammo : MonoBehaviour
             else
             {
                 targetEnemy.TakeDamage(damage);
+                if (slowDown)
+                {
+                    var inst = Instantiate(slowDown,targetEnemy.transform);
+                    inst.Attach(targetEnemy);
+                }
             }
 
             DestroyAmmo();

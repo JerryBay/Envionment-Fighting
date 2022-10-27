@@ -30,4 +30,9 @@ public class IntervalTimer
             _startTime = nowTime;
         }
     }
+
+    public float GetTime()
+    {
+        return Time.time - _startTime;
+    }
 }

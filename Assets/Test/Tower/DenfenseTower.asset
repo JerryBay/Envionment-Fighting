@@ -22,11 +22,12 @@ MonoBehaviour:
   rarity: 1
   nextLevel: {fileID: 0}
   polluteRate: 1
-  attackArea: 1
-  damage: 10
-  damageRange: 2
+  attackDistance: 6
   attackInterval: 0.3
-  attackDistance: 3
   ammo: {fileID: 1140408481, guid: b43d18e8e4449e1479ab990acd1584e1, type: 3}
-  attackType: 1
-  ammoSpeed: 5
+  ammoArea: 3
+  ammoType: 1
+  ammoDamage: 5
+  ammoSpeed: 3
+  ammoRange: 2
+  slowDown: {fileID: 9193972781736863891, guid: 5f9ef4322e764e344b12980cf39afd12, type: 3}
