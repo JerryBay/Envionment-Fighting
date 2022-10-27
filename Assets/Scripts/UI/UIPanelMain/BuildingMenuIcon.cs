@@ -9,6 +9,7 @@ public class BuildingMenuIcon : MonoBehaviour
     [SerializeField] private Image icon;
     [SerializeField] private Text name;
     [SerializeField] private Image blackImg;
+    [SerializeField] private Text money;
 
     private BuildingConfig building;
     private int index;
@@ -24,6 +25,7 @@ public class BuildingMenuIcon : MonoBehaviour
 
         icon.sprite = building.icon;
         name.text = building.name;
+        money.text = building.cost.ToString();
 
         RefreshAvailable();
     }
