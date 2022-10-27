@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7942479250645443810}
   - component: {fileID: -3063259449612832858}
   m_Layer: 0
-  m_Name: WaterTreat_Lv2
+  m_Name: "\u5E9F\u6C34\u5904\u7406\u5382_Lv2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

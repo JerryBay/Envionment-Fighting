@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d58898351864de3822bed79503c2765, type: 3}
+  m_Name: "\u7A7A\u6C14\u51C0\u5316\u6240_Lv1"
+  m_EditorClassIdentifier: 
+  type: 0
+  name: "\u7A7A\u6C14\u51C0\u5316\u6240"
+  desc: 
+  icon: {fileID: 21300000, guid: e747629487307fc4d94ffd90c7d34aef, type: 3}
+  prefab: {fileID: 2325336990936241479, guid: 169cc81901454c14a9b292e5561e5a03, type: 3}
+  cost: 1000
+  level: 1
+  rarity: 2
+  nextLevel: {fileID: 0}
+  polluteRate: 5
+  attackDistance: 7
+  attackInterval: 1
+  ammo: {fileID: 1140408481, guid: b43d18e8e4449e1479ab990acd1584e1, type: 3}
+  ammoArea: 2
+  ammoType: 0
+  ammoDamage: 100
+  ammoSpeed: 3
+  ammoRange: 1
