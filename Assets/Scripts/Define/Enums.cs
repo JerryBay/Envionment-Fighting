@@ -9,6 +9,7 @@ public enum GameEvent
 
     UI_ProductivityUpdate, // 生产力ui更新
     UI_PollutionUpdate, // 污染情况ui更新
+    UI_PollutionValueUpdate, // 污染值ui更新
     UI_WelfareUpdate, // 生活水准ui更新
     UI_ManCountUpdate, // 人数更新
     UI_DeathManCountUpdate, // 死亡人数更新

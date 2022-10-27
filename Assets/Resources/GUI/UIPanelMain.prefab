@@ -3435,6 +3435,7 @@ MonoBehaviour:
   productionText: {fileID: 480516958}
   pollutionPro: {fileID: 2008757061}
   pollutionText: {fileID: 576530937}
+  pollutionValue: {fileID: 6812360448128380632}
   welfarePro: {fileID: 595358955}
   welfareText: {fileID: 4380274}
   welfareDeathSpeed: {fileID: 0}

@@ -13,10 +13,11 @@ public class UIPanelMain : UIPanelBase
     [SerializeField] private Text productionText; // 生产力文字
     [SerializeField] private Image pollutionPro; // 污染情况进度
     [SerializeField] private Text pollutionText; // 污染情况文字
+    [SerializeField] private Text pollutionValue; // 污染值
     [SerializeField] private Image welfarePro; // 生活水准进度
     [SerializeField] private Text welfareText; // 生活水准文字
     [SerializeField] private Text welfareDeathSpeed; // 污染情况死亡速度
-    [SerializeField] private Text money;
+    [SerializeField] private Text money; // 货币
     [SerializeField] private Text man; // 人口
     [SerializeField] private Text deathMan; // 死亡人口
     [SerializeField] private Text difficulty; // 难度
@@ -24,7 +25,7 @@ public class UIPanelMain : UIPanelBase
     [Header("核心")] [SerializeField] private Text gameTime; // 游戏时长
     [SerializeField] private Text age; // 所处时代
 
-    private static string[] timeStageNames = new[] { "农耕时代", "机械时代", "信息时代" };
+    private static string[] timeStageNames = new[] {"农耕时代", "机械时代", "信息时代"};
 
     private void Update()
     {
@@ -45,6 +46,7 @@ public class UIPanelMain : UIPanelBase
         EventManager.Register(GameEvent.MoneyUpdate, OnMoneyUpdateEvent);
         EventManager.Register(GameEvent.UI_ProductivityUpdate, OnProductivityUpdateEvent);
         EventManager.Register(GameEvent.UI_PollutionUpdate, OnPollutionUpdateEvent);
+        EventManager.Register(GameEvent.UI_PollutionValueUpdate, OnPollutionValueUpdateEvent);
         EventManager.Register(GameEvent.UI_WelfareUpdate, OnWelfareUpdateEvent);
         EventManager.Register(GameEvent.UI_ManCountUpdate, OnManCountUpdateEvent);
         EventManager.Register(GameEvent.UI_DeathManCountUpdate, OnDeathManCountUpdateEvent);
@@ -61,6 +63,7 @@ public class UIPanelMain : UIPanelBase
         EventManager.Unregister(GameEvent.MoneyUpdate, OnMoneyUpdateEvent);
         EventManager.Unregister(GameEvent.UI_ProductivityUpdate, OnProductivityUpdateEvent);
         EventManager.Unregister(GameEvent.UI_PollutionUpdate, OnPollutionUpdateEvent);
+        EventManager.Unregister(GameEvent.UI_PollutionValueUpdate, OnPollutionValueUpdateEvent);
         EventManager.Unregister(GameEvent.UI_WelfareUpdate, OnWelfareUpdateEvent);
         EventManager.Unregister(GameEvent.UI_ManCountUpdate, OnManCountUpdateEvent);
         EventManager.Unregister(GameEvent.UI_DeathManCountUpdate, OnDeathManCountUpdateEvent);
@@ -86,20 +89,22 @@ public class UIPanelMain : UIPanelBase
 
     private void OnProductivityUpdateEvent(object[] args)
     {
-        // todo 更新生产力
-        productionText.text = ((float)args[0]).ToString();
+        productionText.text = $"{args[0].ToString()}/s";
     }
 
     private void OnPollutionUpdateEvent(object[] args)
     {
-        // todo 更新污染情况
-        pollutionText.text = args[0].ToString();
+        pollutionText.text = $"{args[0].ToString()}/s";
+    }
+
+    private void OnPollutionValueUpdateEvent(object[] args)
+    {
+        pollutionValue.text = args[0].ToString();
     }
 
     private void OnWelfareUpdateEvent(object[] args)
     {
-        // todo 更新生活水准
-        welfareText.text = args[0].ToString();
+        welfareText.text = ((float) args[0]).ToString("f2");
     }
 
     private void OnManCountUpdateEvent(object[] args)

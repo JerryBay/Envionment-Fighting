@@ -38,6 +38,24 @@ public class GridManager
     }
 
     /// <summary>
+    /// 判断格子里是否有指定建筑
+    /// </summary>
+    public bool IsBuilding(Vector2 worldPos, BaseBuilding building)
+    {
+        return PosToGridKey(worldPos, out GameObject gridKey) && buildingsMap[gridKey] == building;
+    }
+
+    private bool PosToGridKey(Vector2 worldPos, out GameObject gridKey)
+    {
+        gridKey = null;
+        RaycastHit2D hitInfo = Physics2D.Raycast(worldPos, Vector2.right, 0.001f, 1 << LayerUtility.Grid);
+        if (hitInfo.collider == null || !buildingsMap.ContainsKey(hitInfo.collider.gameObject))
+            return false;
+        gridKey = hitInfo.collider.gameObject;
+        return true;
+    }
+
+    /// <summary>
     /// 检查格子是否可用
     /// </summary>
     public bool DetectGridEnable(Vector2 worldPos, out GameObject gridKey)

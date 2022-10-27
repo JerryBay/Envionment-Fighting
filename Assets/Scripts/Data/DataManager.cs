@@ -34,6 +34,8 @@ public class DataManager : SingletonMono<DataManager>
     {
         polluteTotal += polluteRate;
         coin += productivity;
+        EventManager.Dispath(GameEvent.UI_PollutionValueUpdate,polluteTotal);
+        EventManager.Dispath(GameEvent.MoneyUpdate,coin);
 
         // 更新游戏时间
         gameTime++;
@@ -92,6 +94,7 @@ public class DataManager : SingletonMono<DataManager>
                 EventManager.Dispath(GameEvent.UI_PollutionUpdate,polluteRate);
                 EventManager.Dispath(GameEvent.UI_ManCountUpdate,population);
                 EventManager.Dispath(GameEvent.UI_DeathManCountUpdate,peopleDead);
+                EventManager.Dispath(GameEvent.UI_PollutionValueUpdate,polluteTotal);
                 break;
             default:
                 gameStart = false;

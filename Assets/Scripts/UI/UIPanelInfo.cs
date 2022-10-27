@@ -22,6 +22,9 @@ public class UIPanelInfo : UIPanelBase
     [SerializeField] private Text monsterNameText;
     [SerializeField] private Text monsterDescText;
 
+    [SerializeField] private GameObject upgradeMoneyObj;
+    [SerializeField] private Text upgradeMoneyCount;
+
     private BaseBuilding building;
 
     protected override void OnShow()
@@ -57,13 +60,17 @@ public class UIPanelInfo : UIPanelBase
         {
             productionObj.SetActive(true);
             defenseObj.SetActive(false);
+            upgradeMoneyObj.SetActive(true);
+            upgradeMoneyCount.text = "0";
 
             var config = (building as ProductionBuilding).productionBuildingConfig;
             productionNameText.text = config.name;
             productionDescText.text = config.desc;
-            productionText.text = config.productionRate.ToString();
-            pollutionText.text = config.polluteRate.ToString();
+            productionText.text = $"{config.productionRate.ToString()}/s";
+            pollutionText.text = $"{config.polluteRate.ToString()}/s";
             productionBtn.interactable = config.nextLevel != null;
+            if (config.nextLevel != null)
+                upgradeMoneyCount.text = config.nextLevel.cost.ToString();
         }
         else if (building is DefenseTower) // 更新防御建筑展示信息
         {
@@ -76,10 +83,13 @@ public class UIPanelInfo : UIPanelBase
             defenseAttackText.text = config.ammoDamage.ToString();
             defenseAttackAreaText.text = config.ammoArea.ToString();
             defenseBtn.interactable = config.nextLevel != null;
+            if (config.nextLevel != null)
+                upgradeMoneyCount.text = config.nextLevel.cost.ToString();
         }
         else
         {
             Debug.LogError("error");
+            upgradeMoneyObj.SetActive(false);
         }
     }
 
@@ -90,6 +100,7 @@ public class UIPanelInfo : UIPanelBase
     {
         productionObj.SetActive(false);
         defenseObj.SetActive(false);
+        upgradeMoneyObj.SetActive(false);
         monsterObj.SetActive(true);
         // todo 更新怪物信息
     }

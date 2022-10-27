@@ -254,20 +254,20 @@ public class GameScene : MonoBehaviour
             {
                 return;
             }
-            else
+
+            Vector2 pos = building.transform.position;
+            if (!GridManager.Inst.IsBuilding(pos, building))
+                return;
+            
+            building.DestroySelf(); // 销毁当前的
+            if (GridManager.Inst.DetectGridEnable(pos, out GameObject gridKey))
             {
-                Vector2 pos = building.transform.position;
-                if (GridManager.Inst.DetectGridEnable(pos, out GameObject gridKey))
-                {
-                    building.DestroySelf(); // 销毁当前的
-                    
-                    DataManager.Instance.coin -= nextLevel.cost;
-                    EventManager.Dispath(GameEvent.MoneyUpdate,DataManager.Instance.coin);
-                    
-                    BaseBuilding b = BuildingManager.Instance.Spawn(nextLevel, pos);
-                    GridManager.Inst.BuildingSeize(gridKey, b);
-                    EventManager.Dispath(GameEvent.UI_BuildingUpgradeComplate);
-                }
+                DataManager.Instance.coin -= nextLevel.cost;
+                EventManager.Dispath(GameEvent.MoneyUpdate, DataManager.Instance.coin);
+
+                BaseBuilding b = BuildingManager.Instance.Spawn(nextLevel, pos);
+                GridManager.Inst.BuildingSeize(gridKey, b);
+                EventManager.Dispath(GameEvent.UI_BuildingUpgradeComplate);
             }
         }
     }
@@ -319,9 +319,9 @@ public class GameScene : MonoBehaviour
         {
             BaseBuilding building = BuildingManager.Instance.Spawn(config, gridKey.transform.position);
             GridManager.Inst.BuildingSeize(gridKey, building);
-            
+
             DataManager.Instance.coin -= config.cost;
-            EventManager.Dispath(GameEvent.MoneyUpdate,DataManager.Instance.coin);
+            EventManager.Dispath(GameEvent.MoneyUpdate, DataManager.Instance.coin);
             return true;
         }
 
@@ -340,12 +340,12 @@ public class GameScene : MonoBehaviour
         {
             BaseBuilding building = BuildingManager.Instance.Spawn(config, gridKey.transform.position);
             GridManager.Inst.BuildingSeize(gridKey, building);
-            
+
             DataManager.Instance.coin -= config.cost;
-            EventManager.Dispath(GameEvent.MoneyUpdate,DataManager.Instance.coin);
+            EventManager.Dispath(GameEvent.MoneyUpdate, DataManager.Instance.coin);
             return true;
         }
-        
+
         return false;
     }
 }
