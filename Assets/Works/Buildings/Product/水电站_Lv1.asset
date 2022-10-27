@@ -17,9 +17,9 @@ MonoBehaviour:
   desc: "\u5F00\u59CB\u5229\u7528\u81EA\u7136\u8D44\u6E90\u53D1\u7535"
   icon: {fileID: 21300000, guid: e20d999ac6c16444c8ece0f831bf7aa0, type: 3}
   prefab: {fileID: 2325336990936241479, guid: d89588c463e95dd4dac2bf9af626daec, type: 3}
-  cost: 500
+  cost: 1000
   level: 1
   rarity: 1
-  nextLevel: {fileID: 0}
-  productionRate: 50
-  polluteRate: 10
+  nextLevel: {fileID: 11400000, guid: 01e52136698afb24eb12437d5f79cbce, type: 2}
+  productionRate: 300
+  polluteRate: 150

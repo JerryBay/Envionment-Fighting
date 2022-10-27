@@ -17,7 +17,7 @@ MonoBehaviour:
   desc: 
   icon: {fileID: 21300000, guid: aa448ddf5842dce4b980308c7467cd81, type: 3}
   prefab: {fileID: 2325336990936241479, guid: 2c42884f8629a3b4d9cdba4c3d125ef0, type: 3}
-  cost: 1000
+  cost: 300
   level: 1
   rarity: 1
   nextLevel: {fileID: 0}
@@ -25,8 +25,8 @@ MonoBehaviour:
   attackDistance: 3
   attackInterval: 1
   ammo: {fileID: 1140408481, guid: b43d18e8e4449e1479ab990acd1584e1, type: 3}
-  ammoArea: 2
+  ammoArea: 1
   ammoType: 0
   ammoDamage: 10
-  ammoSpeed: 3
+  ammoSpeed: 2
   ammoRange: 1

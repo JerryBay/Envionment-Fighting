@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: "\u7814\u7A76\u6240_Lv2"
   m_EditorClassIdentifier: 
   type: 0
-  name: "\u57FA\u7840\u7814\u7A76\u6240"
-  desc: "\u57FA\u7840\u73AF\u4FDD\u79D1\u6280\u7814\u7A76\uFF0C\u7814\u7A76\u7ED3\u675F\u540E\u53EF\u5EFA\u9020\u65B0\u73AF\u4FDD\u5EFA\u7B51"
+  name: "\u7814\u7A76\u6240"
+  desc: 
   icon: {fileID: 21300000, guid: fa0fc96c185d49b4984107486f688edf, type: 3}
   prefab: {fileID: 2325336990936241479, guid: 5544cb1fe29898640bb789acf9f34a1b, type: 3}
-  cost: 500
-  level: 1
-  rarity: 1
+  cost: 1500
+  level: 2
+  rarity: 2
   nextLevel: {fileID: 0}
-  productionRate: 0
-  polluteRate: 10
+  productionRate: 250
+  polluteRate: 150
