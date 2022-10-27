@@ -250,14 +250,24 @@ public class GameScene : MonoBehaviour
             if (nextLevel == null) // 不能继续升级了
                 return;
 
-            // todo 判定货币是否足够
-            Vector2 pos = building.transform.position;
-            building.DestroySelf(); // 销毁当前的
-            if (GridManager.Inst.DetectGridEnable(pos, out GameObject gridKey))
+            if (DataManager.Instance.coin < nextLevel.cost)
             {
-                BaseBuilding b = BuildingManager.Instance.Spawn(nextLevel, pos);
-                GridManager.Inst.BuildingSeize(gridKey, b);
-                EventManager.Dispath(GameEvent.UI_BuildingUpgradeComplate);
+                return;
+            }
+            else
+            {
+                Vector2 pos = building.transform.position;
+                if (GridManager.Inst.DetectGridEnable(pos, out GameObject gridKey))
+                {
+                    building.DestroySelf(); // 销毁当前的
+                    
+                    DataManager.Instance.coin -= nextLevel.cost;
+                    EventManager.Dispath(GameEvent.MoneyUpdate,DataManager.Instance.coin);
+                    
+                    BaseBuilding b = BuildingManager.Instance.Spawn(nextLevel, pos);
+                    GridManager.Inst.BuildingSeize(gridKey, b);
+                    EventManager.Dispath(GameEvent.UI_BuildingUpgradeComplate);
+                }
             }
         }
     }
@@ -300,12 +310,18 @@ public class GameScene : MonoBehaviour
     // 尝试建造建筑
     private bool TryBuilding(Vector2 pos, BuildingConfig config)
     {
-        // todo 判定货币是否足够
+        if (DataManager.Instance.coin < config.cost)
+        {
+            return false;
+        }
 
         if (GridManager.Inst.DetectGridEnable(pos, out GameObject gridKey))
         {
             BaseBuilding building = BuildingManager.Instance.Spawn(buildingConfig, gridKey.transform.position);
             GridManager.Inst.BuildingSeize(gridKey, building);
+            
+            DataManager.Instance.coin -= config.cost;
+            EventManager.Dispath(GameEvent.MoneyUpdate,DataManager.Instance.coin);
             return true;
         }
 
@@ -315,15 +331,21 @@ public class GameScene : MonoBehaviour
     // 尝试建造建筑
     private bool TryBuilding(GameObject gridKey, BuildingConfig config)
     {
-        // todo 判定货币是否足够
+        if (DataManager.Instance.coin < config.cost)
+        {
+            return false;
+        }
 
         if (GridManager.Inst.DetectGridEnable(gridKey))
         {
             BaseBuilding building = BuildingManager.Instance.Spawn(config, gridKey.transform.position);
             GridManager.Inst.BuildingSeize(gridKey, building);
+            
+            DataManager.Instance.coin -= config.cost;
+            EventManager.Dispath(GameEvent.MoneyUpdate,DataManager.Instance.coin);
             return true;
         }
-
+        
         return false;
     }
 }

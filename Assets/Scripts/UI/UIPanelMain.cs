@@ -85,21 +85,25 @@ public class UIPanelMain : UIPanelBase
     private void OnPollutionUpdateEvent(object[] args)
     {
         // todo 更新污染情况
+        pollutionText.text = args[0] as string;
     }
 
     private void OnWelfareUpdateEvent(object[] args)
     {
         // todo 更新生活水准
+        welfareText.text = args[0] as string;
     }
 
     private void OnManCountUpdateEvent(object[] args)
     {
         // todo 更新人口
+        man.text = args[0] as string;
     }
 
     private void OnDeathManCountUpdateEvent(object[] args)
     {
         // todo 更新死亡人口
+        deathMan.text = args[0] as string;
     }
 
     private void OnSelectBuildingPlacePositionStartEvent(object[] args)
