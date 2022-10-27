@@ -9,22 +9,22 @@ public class DefenseTower : BaseBuilding
     public DefenseBuildingConfig defenseBuildingConfig;
 
     //Pollute
-    public float polluteRate;
+    private float polluteRate;
     
     //Attack
-    public float attackDistance;
-    public float attackInterval;
-    public Area ammoArea;
+    private float attackDistance;
+    private float attackInterval;
+    private Area ammoArea;
     
     //Ammo
-    public Ammo ammo;
-    public float ammoDamage; 
-    public float ammoSpeed;
-    public AmmoType ammoType;
-    public float ammoRange;
+    private Ammo ammo;
+    private float ammoDamage; 
+    private float ammoSpeed;
+    private AmmoType ammoType;
+    private float ammoRange;
 
-    public List<BaseEnemy> enemies = new List<BaseEnemy>();
-    public IntervalTimer intTimer;
+    private List<BaseEnemy> enemies = new List<BaseEnemy>();
+    private IntervalTimer intTimer;
 
     protected override void Awake()
     {
