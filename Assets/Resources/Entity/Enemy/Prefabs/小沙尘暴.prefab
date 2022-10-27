@@ -101,6 +101,8 @@ MonoBehaviour:
   area: 2
   totalHealth: 150
   speed: 2
+  damage: 5
+  startToAttack: 0
   _curHealth: 0
 --- !u!58 &6020351974376023927
 CircleCollider2D:
