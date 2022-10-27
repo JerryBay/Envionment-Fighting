@@ -23,8 +23,6 @@ public class DefenseTower : BaseBuilding
     public AmmoType ammoType;
     public float ammoRange;
 
-    public SlowDown slowDown;
-
     public List<BaseEnemy> enemies = new List<BaseEnemy>();
     public IntervalTimer intTimer;
 
@@ -71,7 +69,6 @@ public class DefenseTower : BaseBuilding
         ammoSpeed = defenseBuildingConfig.ammoSpeed;
         ammoRange = defenseBuildingConfig.ammoRange;
 
-        slowDown = defenseBuildingConfig.slowDown;
 
         intTimer = new IntervalTimer(attackInterval);
         intTimer.action = () =>
@@ -136,7 +133,6 @@ public class DefenseTower : BaseBuilding
             bullet.range = ammoRange;
             bullet.originTower = this;
             bullet.targetEnemy = enemy;
-            bullet.slowDown = slowDown;
         }
     }
 }

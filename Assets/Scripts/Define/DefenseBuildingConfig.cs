@@ -19,6 +19,4 @@ public class DefenseBuildingConfig : BuildingConfig
     public float ammoSpeed; //子弹速度
     public float ammoRange; //子弹攻击范围
 
-    [Space] 
-    public SlowDown slowDown;
 }

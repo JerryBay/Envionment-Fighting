@@ -12,8 +12,6 @@ public class BaseEnemy : MonoBehaviour
     public float totalHealth = 100;
     public float speed = 10;
 
-    public SlowDown slowDown;
-
     //private Slider _healthSlider;
     private List<Vector2> _wayPoints;
     [SerializeField] private float _curHealth;
