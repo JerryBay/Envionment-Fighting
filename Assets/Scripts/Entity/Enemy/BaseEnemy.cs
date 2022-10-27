@@ -9,9 +9,11 @@ public class BaseEnemy : MonoBehaviour
 {
     public Area area;
 
-    public float totalHealth = 100;
-    public float speed = 10;
+    public float totalHealth;
+    public float speed;
+    public float damage;
     public SlowDown slowDown;
+    public bool startToAttack = false;
 
     //private Slider _healthSlider;
     private List<Vector2> _wayPoints;
@@ -32,6 +34,10 @@ public class BaseEnemy : MonoBehaviour
     private void Update()
     {
         Move();
+        if (_pointIndex >= _wayPoints.Count)
+        {
+            startToAttack = true;
+        }
     }
 
     private void OnDestroy()
@@ -44,7 +50,7 @@ public class BaseEnemy : MonoBehaviour
 
     private void Move()
     {
-        if (_pointIndex > _wayPoints.Count - 1)
+        if (_pointIndex >= _wayPoints.Count)
         {
             return;
         }

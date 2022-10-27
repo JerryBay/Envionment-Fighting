@@ -14,11 +14,11 @@ public class DataManager : SingletonMono<DataManager>
 
     public float coin = 0;
     public float productivity = 0;
-    public int population = 0;
+    public float population = 0;
     public float polluteRate = 0;
     public float polluteTotal = 0;
     public float welfare = 0;
-    public int peopleDead = 0;
+    public float peopleDead = 0;
     
     public float gameTime = 0; // 游戏时间
     public TimeStage timeStage; // 时间阶段
@@ -102,8 +102,15 @@ public class DataManager : SingletonMono<DataManager>
         EventManager.Dispath(GameEvent.UI_PollutionUpdate,polluteRate);
     }
 
-    public void UpdateManDead(int value)
+    public void UpdatePopulation(float value)
     {
-        
+        population += value;
+        EventManager.Dispath(GameEvent.UI_ManCountUpdate,population);
+    }
+
+    public void UpdateManDead(float value)
+    {
+        peopleDead += value;
+        EventManager.Dispath(GameEvent.UI_DeathManCountUpdate,peopleDead);
     }
 }

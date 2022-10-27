@@ -3758,7 +3758,7 @@ MonoBehaviour:
   population: 0
   polluteRate: 0
   polluteTotal: 0
-  evaluation: 0
+  welfare: 0
   peopleDead: 0
   gameTime: 0
   timeStage: 0

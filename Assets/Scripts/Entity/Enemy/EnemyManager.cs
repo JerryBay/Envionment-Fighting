@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,37 @@ using UnityEngine.Serialization;
 public class EnemyManager : SingletonMono<EnemyManager>
 {
     public List<BaseEnemy> enemies = new List<BaseEnemy>();
+
+    public IntervalTimer oneSecond;
+
+    private void Awake()
+    {
+        oneSecond = new IntervalTimer(1);
+        oneSecond.action = Attack;
+    }
+
+    private void Update()
+    {
+        oneSecond.Update();
+    }
+
+    public void Attack()
+    {
+        float damage = 0;
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            if (enemies[i]!=null)
+            {
+                if (enemies[i].startToAttack)
+                {
+                    damage += enemies[i].damage;
+                }   
+            }
+        }
+        
+        DataManager.Instance.UpdatePopulation(-damage);
+        DataManager.Instance.UpdateManDead(damage);
+    }
 
     public void Spawn(WaveConfig config, Vector2 pos)
     {
