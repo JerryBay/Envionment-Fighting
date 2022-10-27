@@ -12,6 +12,15 @@ public class BuildingManager : SingletonMono<BuildingManager>
     public BaseBuilding Spawn(BuildingConfig config, Vector2 pos)
     {
         var inst = Instantiate(config.prefab, new Vector3(pos.x, pos.y, 0),Quaternion.identity);
-        return inst.GetComponent<BaseBuilding>();
+        var building = inst.GetComponent<BaseBuilding>();
+        // if (building is DefenseTower)
+        // {
+        //     (building as DefenseTower).defenseBuildingConfig = config as DefenseBuildingConfig;
+        // }
+        // else if (building is ProductionBuilding)
+        // {
+        //     (building as ProductionBuilding).productionBuildingConfig = config as ProductionBuildingConfig;
+        // }
+        return building;
     }
 }

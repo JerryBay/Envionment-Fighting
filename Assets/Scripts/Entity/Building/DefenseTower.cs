@@ -15,6 +15,8 @@ public class DefenseTower : BaseBuilding
         base.Awake();
         BuildingManager.Instance.towers.Add(this);
         DataManager.Instance.polluteRate += defenseBuildingConfig.polluteRate;
+        CircleCollider2D col = GetComponent<CircleCollider2D>();
+        col.radius = defenseBuildingConfig.attackDistance * 2;
     }
 
     private void Update()
