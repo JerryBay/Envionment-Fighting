@@ -23,4 +23,17 @@ public class BuildingManager : SingletonMono<BuildingManager>
         // }
         return building;
     }
+
+    public void DestroyAll()
+    {
+        for (int i = 0; i < towers.Count; i++)
+        {
+            Destroy(towers[i].gameObject);
+        }
+
+        for (int i = 0; i < prods.Count; i++)
+        {
+            Destroy(prods[i].gameObject);
+        }
+    }
 }

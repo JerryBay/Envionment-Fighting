@@ -57,16 +57,13 @@ public class EnemyManager : SingletonMono<EnemyManager>
             yield return new WaitForSeconds(interval);
         }
     }
-    
-    public void Spawn(BaseEnemy enemy, Vector2 pos, Route route)
+
+    public void DestroyAll()
     {
-        BaseEnemy inst = Instantiate(enemy, new Vector3(pos.x, pos.y, 0),Quaternion.identity);
-        inst.SetWayPoints(route.wayPoints);
-    }
-    
-    public void Spawn(BaseEnemy enemy, Vector2 pos, List<Vector2> wayPoints)
-    {
-        BaseEnemy inst = Instantiate(enemy, new Vector3(pos.x, pos.y, 0),Quaternion.identity);
-        inst.SetWayPoints(wayPoints);
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            Destroy(enemies[i].gameObject);
+        }
+        enemies.Clear();
     }
 }

@@ -148,6 +148,8 @@ public class GameScene : MonoBehaviour
                 break;
             default:
                 // todo 销毁全部的塔和实体
+                EnemyManager.Instance.DestroyAll();
+                BuildingManager.Instance.DestroyAll();
                 gameStart = false;
                 break;
         }
