@@ -95,6 +95,7 @@ public class DataManager : SingletonMono<DataManager>
                 EventManager.Dispath(GameEvent.UI_ManCountUpdate,population);
                 EventManager.Dispath(GameEvent.UI_DeathManCountUpdate,peopleDead);
                 EventManager.Dispath(GameEvent.UI_PollutionValueUpdate,polluteTotal);
+                EventManager.Dispath(GameEvent.MoneyUpdate,coin);
                 break;
             default:
                 gameStart = false;

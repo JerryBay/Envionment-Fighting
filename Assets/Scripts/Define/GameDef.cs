@@ -13,8 +13,8 @@ public static class GameDef
     {
         {(int) GameStage.MainMenu, new string[] {"UIPanelMainMenu"}},
         {(int) GameStage.Playing, new[] {"UIPanelMain"}},
-        {(int) GameStage.Success, new[] {"UIPanelMain"}},
-        {(int) GameStage.Failure, new[] {"UIPanelMain"}},
+        {(int) GameStage.Success, new[] {"UIPanelMainMenu"}},
+        {(int) GameStage.Failure, new[] {"UIPanelMainMenu"}},
     };
     
     // 格子单位大小
