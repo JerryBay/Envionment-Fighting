@@ -317,7 +317,7 @@ public class GameScene : MonoBehaviour
 
         if (GridManager.Inst.DetectGridEnable(pos, out GameObject gridKey))
         {
-            BaseBuilding building = BuildingManager.Instance.Spawn(buildingConfig, gridKey.transform.position);
+            BaseBuilding building = BuildingManager.Instance.Spawn(config, gridKey.transform.position);
             GridManager.Inst.BuildingSeize(gridKey, building);
             
             DataManager.Instance.coin -= config.cost;
