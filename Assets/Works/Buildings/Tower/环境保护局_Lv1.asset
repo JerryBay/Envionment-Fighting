@@ -12,21 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d58898351864de3822bed79503c2765, type: 3}
   m_Name: "\u73AF\u5883\u4FDD\u62A4\u5C40_Lv1"
   m_EditorClassIdentifier: 
-  type: 0
-  name: "\u7A7A\u6C14\u51C0\u5316\u6240"
+  type: 1
+  name: "\u73AF\u5883\u4FDD\u62A4\u5C40"
   desc: 
-  icon: {fileID: 21300000, guid: e747629487307fc4d94ffd90c7d34aef, type: 3}
-  prefab: {fileID: 2325336990936241479, guid: 169cc81901454c14a9b292e5561e5a03, type: 3}
+  icon: {fileID: 21300000, guid: 90c7f872234dc6b4db752a5aa5d70f36, type: 3}
+  prefab: {fileID: 2325336990936241479, guid: 408e77841d880b14dbe1230f4f0dd60a, type: 3}
   cost: 1000
   level: 1
   rarity: 2
   nextLevel: {fileID: 0}
   polluteRate: 5
-  attackDistance: 7
+  attackDistance: 5
   attackInterval: 1
   ammo: {fileID: 1140408481, guid: b43d18e8e4449e1479ab990acd1584e1, type: 3}
-  ammoArea: 2
+  ammoArea: 1
   ammoType: 0
-  ammoDamage: 100
+  ammoDamage: 350
   ammoSpeed: 3
   ammoRange: 1
