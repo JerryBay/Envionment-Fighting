@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4e6d9dcfa64b4c9dc81deeaa34fd20, type: 3}
   m_Name: DataConfig
   m_EditorClassIdentifier: 
-  primaryCoin: 10
+  primaryCoin: 200
   primaryPopulation: 200
   primaryEntity:
   - {fileID: 2325336990936241479, guid: 4b76f5e24d2080e4db932e07be1db577, type: 3}
