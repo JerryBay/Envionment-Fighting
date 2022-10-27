@@ -72,6 +72,8 @@ public class UIPanelMainBuildingMenu : MonoBehaviour
         EventManager.Unregister(GameEvent.UI_BuildingMenuTypeChanged, OnBuildingMenuTypeChangedEvent);
         EventManager.Unregister(GameEvent.UI_SelectBuildingPlacePositionStart, OnSelectBuildingPlacePositionStartEvent);
         EventManager.Unregister(GameEvent.UI_SelectBuildingPlacePositionStop, OnSelectBuildingPlacePositionStopEvent);
+        EventManager.Unregister(GameEvent.UI_SelectPositionPlaceBuildingStart, OnSelectPositionPlaceBuildingStartEvent);
+        EventManager.Unregister(GameEvent.UI_SelectPositionPlaceBuildingStop, OnSelectPositionPlaceBuildingStopEvent);
     }
 
     private void OnOpenBuildingMenuEvent(object[] args)
