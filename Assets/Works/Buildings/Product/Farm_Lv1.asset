@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Farm_Lv1
   m_EditorClassIdentifier: 
   type: 0
-  name: 
-  desc: 
+  name: "\u539F\u59CB\u519C\u573A"
+  desc: "\u521D\u59CB\u8015\u5730\uFF0C\u751F\u4EA7\u7CAE\u98DF\uFF0C\u57FA\u672C\u6CA1\u6709\u6C61\u67D3"
   icon: {fileID: 21300000, guid: 45507c4436d167c45bf1580b46b88063, type: 3}
   prefab: {fileID: 2325336990936241479, guid: ec4d4681bb06cc243a96305ac47f470a, type: 3}
-  cost: 0
-  level: 0
-  rarity: 0
-  nextLevel: {fileID: 0}
-  productionRate: 0
-  polluteRate: 0
+  cost: 100
+  level: 1
+  rarity: 1
+  nextLevel: {fileID: 11400000, guid: 0eef2801a5e3e484292a7b3b9251ed57, type: 2}
+  productionRate: 5
+  polluteRate: 1
