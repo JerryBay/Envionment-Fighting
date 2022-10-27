@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 3595049340689986150}
   - component: {fileID: -8760487449008663744}
   - component: {fileID: 6020351974376023927}
+  - component: {fileID: 9005038216269049227}
   m_Layer: 0
-  m_Name: "\u5927\u9178\u96E8"
+  m_Name: "\u8757\u866B"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3595049340689986151}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 10e3903805704bf4dbc58096aef6772a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 53a5e9c9de59fea449a5ad56b2352ee1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,8 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   area: 2
-  totalHealth: 60
-  speed: 1
+  totalHealth: 1
+  speed: 3
   damage: 10
   startToAttack: 0
   _curHealth: 0
@@ -120,3 +121,23 @@ CircleCollider2D:
   m_Offset: {x: 0.03942609, y: 0}
   serializedVersion: 2
   m_Radius: 1.1916924
+--- !u!95 &9005038216269049227
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3595049340689986151}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b3b7eeeb1b78ac740b135e862cd7071d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
