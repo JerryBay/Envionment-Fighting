@@ -48,6 +48,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defenseBuildingConfig: {fileID: 11400000, guid: e52a1bec2eb412b47885ea62c1f204d9, type: 2}
+  polluteRate: 0
+  attackDistance: 0
+  attackInterval: 0
+  ammoArea: 0
+  ammo: {fileID: 0}
+  ammoDamage: 0
+  ammoSpeed: 0
+  ammoType: 0
+  ammoRange: 0
   enemies: []
 --- !u!212 &7767420997631037711
 SpriteRenderer:
@@ -90,8 +99,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 69af2e978b82aa141b0622c30f97c4a8, type: 3}
-  m_Color: {r: 1, g: 0.08018869, b: 0.08018869, a: 1}
+  m_Sprite: {fileID: 21300000, guid: b52f9c57ee1d64943997f14c943ed996, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
