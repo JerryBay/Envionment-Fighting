@@ -2,27 +2,44 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DefenseTower : BaseBuilding
 {
     public DefenseBuildingConfig defenseBuildingConfig;
 
+    //Pollute
+    public float polluteRate;
+    
+    //Attack
+    public float attackDistance;
+    public float attackInterval;
+    public Area ammoArea;
+    
+    //Ammo
+    public Ammo ammo;
+    public float ammoDamage; 
+    public float ammoSpeed;
+    public AmmoType ammoType;
+    public float ammoRange;
+    
     public List<BaseEnemy> enemies = new List<BaseEnemy>();
     private float _timer = 0;
 
     protected override void Awake()
     {
         base.Awake();
+        Init();
         BuildingManager.Instance.towers.Add(this);
-        DataManager.Instance.polluteRate += defenseBuildingConfig.polluteRate;
+        DataManager.Instance.polluteRate += polluteRate;
         CircleCollider2D col = GetComponent<CircleCollider2D>();
-        col.radius = defenseBuildingConfig.attackDistance * 2;
+        col.radius = attackDistance * 2;
     }
 
     private void Update()
     {
         _timer += Time.deltaTime;
-        if (enemies.Count > 0 && _timer >= defenseBuildingConfig.attackInterval)
+        if (enemies.Count > 0 && _timer >= attackInterval)
         {
             _timer = 0;
             Attack(enemies[0]);
@@ -34,11 +51,28 @@ public class DefenseTower : BaseBuilding
         GridManager.Inst.BuildingRelease(this);
         if (BuildingManager.Instance.towers.Contains(this))
         {
-            DataManager.Instance.polluteRate -= defenseBuildingConfig.polluteRate;
+            DataManager.Instance.polluteRate -= polluteRate;
             BuildingManager.Instance.towers.Remove(this);
         }
 
         base.OnDestroy();
+    }
+
+    private void Init()
+    {
+        polluteRate = defenseBuildingConfig.polluteRate;
+        
+        //Attack
+        attackDistance = defenseBuildingConfig.attackDistance;
+        attackInterval = defenseBuildingConfig.attackInterval;
+        
+        //Ammo
+        ammo = defenseBuildingConfig.ammo;
+        ammoArea = defenseBuildingConfig.ammoArea;
+        ammoType = defenseBuildingConfig.ammoType;
+        ammoDamage = defenseBuildingConfig.ammoDamage;
+        ammoSpeed = defenseBuildingConfig.ammoSpeed;
+        ammoRange = defenseBuildingConfig.ammoRange;
     }
 
     private void UpdateEnemies()
@@ -55,7 +89,7 @@ public class DefenseTower : BaseBuilding
     private void OnTriggerEnter2D(Collider2D other)
     {
         BaseEnemy enemy = other.GetComponent<BaseEnemy>();
-        if ((enemy != null) && (enemy.area & defenseBuildingConfig.attackArea) != 0)
+        if ((enemy != null) && (enemy.area & ammoArea) != 0)
         {
             if (!enemies.Contains(enemy))
             {
@@ -67,7 +101,7 @@ public class DefenseTower : BaseBuilding
     private void OnTriggerExit2D(Collider2D other)
     {
         BaseEnemy enemy = other.GetComponent<BaseEnemy>();
-        if ((enemy != null) && (enemy.area & defenseBuildingConfig.attackArea) != 0)
+        if ((enemy != null) && (enemy.area & ammoArea) != 0)
         {
             if (enemies.Contains(enemy))
             {
@@ -85,11 +119,12 @@ public class DefenseTower : BaseBuilding
 
         if (enemies.Count > 0)
         {
-            Ammo bullet = Instantiate(defenseBuildingConfig.ammo, transform);
-            bullet.damage = defenseBuildingConfig.damage;
-            bullet.speed = defenseBuildingConfig.ammoSpeed;
-            bullet.type = defenseBuildingConfig.attackType;
-            bullet.damageRange = defenseBuildingConfig.damageRange;
+            Ammo bullet = Instantiate(ammo, transform);
+            bullet.damage = ammoDamage;
+            bullet.speed = ammoSpeed;
+            bullet.type = ammoType;
+            bullet.area = ammoArea;
+            bullet.range = ammoRange;
             bullet.originTower = this;
             bullet.targetEnemy = enemy;
         }

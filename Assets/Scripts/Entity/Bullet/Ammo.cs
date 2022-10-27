@@ -8,12 +8,13 @@ public class Ammo : MonoBehaviour
     public DefenseTower originTower;
     public BaseEnemy targetEnemy;
     public AmmoType type;
-    public float damageRange;
+    public Area area;
+    public float range;
     public float speed;
     public float damage;
-    
+
     public GameObject explosionEffectPrefab;
-    
+
     private float _minDist = 0.02f;
 
     private void Update()
@@ -23,10 +24,10 @@ public class Ammo : MonoBehaviour
             DestroyAmmo();
             return;
         }
-        
+
         Vector3 dir = (targetEnemy.transform.position - transform.position).normalized;
         transform.Translate(dir * Time.deltaTime * speed);
-        if (Vector2.Distance(targetEnemy.transform.position,transform.position)<_minDist)
+        if (Vector2.Distance(targetEnemy.transform.position, transform.position) < _minDist)
         {
             if (type == AmmoType.AreaOfEffect)
             {
@@ -34,9 +35,12 @@ public class Ammo : MonoBehaviour
                 var enemies = EnemyManager.Instance.enemies;
                 for (int i = 0; i < enemies.Count; i++)
                 {
-                    if (Vector2.Distance(enemies[i].transform.position,center) <= damageRange)
+                    if (Vector2.Distance(enemies[i].transform.position, center) <= range)
                     {
-                        enemies[i].TakeDamage(damage);
+                        if ((enemies[i].area & area) != 0)
+                        {
+                            enemies[i].TakeDamage(damage);
+                        }
                     }
                 }
             }
@@ -44,7 +48,8 @@ public class Ammo : MonoBehaviour
             {
                 targetEnemy.TakeDamage(damage);
             }
-            DestroyAmmo();   
+
+            DestroyAmmo();
         }
     }
 
@@ -52,16 +57,6 @@ public class Ammo : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
-    // public void SetOriginTower(DefenseTower tower)
-    // {
-    //     originTower = tower;
-    // }
-    //
-    // public void SetTargetEnemy(BaseEnemy enemy)
-    // {
-    //     targetEnemy = enemy;
-    // }
 }
 
 public enum AmmoType

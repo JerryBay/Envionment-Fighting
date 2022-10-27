@@ -70,8 +70,8 @@ public class UIPanelInfo : UIPanelBase
             var config = (building as DefenseTower).defenseBuildingConfig;
             defenseNameText.text = config.name;
             defenseNameText.text = config.desc;
-            defenseAttackText.text = config.damage.ToString();
-            defenseAttackAreaText.text = config.attackArea.ToString();
+            defenseAttackText.text = config.ammoDamage.ToString();
+            defenseAttackAreaText.text = config.ammoArea.ToString();
         }
         else
         {
