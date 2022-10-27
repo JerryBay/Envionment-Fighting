@@ -71,7 +71,7 @@ public class WaveCreator
     {
         int count = Mathf.FloorToInt(DataManager.Instance.polluteTotal / GameDef.gameConfig.polluteToMonsterUnit);
         if (count <= 0) return;
-        DataManager.Instance.polluteTotal -= count;
+        DataManager.Instance.polluteTotal -= count * GameDef.gameConfig.polluteToMonsterUnit;
         EventManager.Dispath(GameEvent.UI_PollutionUpdate, DataManager.Instance.polluteTotal);
         Debug.Log($"通过消耗{count * GameDef.gameConfig.polluteToMonsterUnit}点污染值生成有{count}只的怪物波次");
 
