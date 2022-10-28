@@ -29,7 +29,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 9af0cc9224aefbc488e098fedd47ec09, type: 3}
     volume: 0.642
     type: 1
-  - key: Attack
+  - key: Single
     clip: {fileID: 8300000, guid: da7c91c558a1e3148acd414e5d8c1684, type: 3}
-    volume: 0.694
+    volume: 0.466
+    type: 1
+  - key: AOE
+    clip: {fileID: 8300000, guid: 1867ed6d4ade810499c500dcc9bf5a26, type: 3}
+    volume: 0.506
     type: 1

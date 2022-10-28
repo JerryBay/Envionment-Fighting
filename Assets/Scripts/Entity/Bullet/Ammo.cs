@@ -41,15 +41,15 @@ public class Ammo : MonoBehaviour
                         if ((enemies[i].area & area) != 0)
                         {
                             enemies[i].TakeDamage(damage);
-                            AudioManager.Instance.PlayEffect("Attack",false);
                         }
                     }
                 }
+                AudioManager.Instance.PlayEffect("AOE",false);
             }
             else
             {
                 targetEnemy.TakeDamage(damage);
-                AudioManager.Instance.PlayEffect("Attack",false);
+                AudioManager.Instance.PlayEffect("Single",false);
             }
 
             DestroyAmmo();
