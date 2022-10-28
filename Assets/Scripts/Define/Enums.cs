@@ -6,6 +6,7 @@ public enum GameEvent
     GameStageUpdate, // 游戏阶段更新
     MoneyUpdate, // 货币更新
     GameTimeUpdate, // 游戏时间更新
+    MonsterReadyCreate, // 怪物准备生成
 
     UI_ProductivityUpdate, // 生产力ui更新
     UI_PollutionUpdate, // 污染情况ui更新

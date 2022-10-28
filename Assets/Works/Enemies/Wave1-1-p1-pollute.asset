@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae6089eb3984661983e45e336684556, type: 3}
   m_Name: Wave1-1-p1-pollute
   m_EditorClassIdentifier: 
-  enemyType: {fileID: -8760487449008663744, guid: a6ebb95eb39a11d4195a20d2bf4b79b5, type: 3}
+  enemyType: {fileID: -8760487449008663744, guid: 8c85f5c9ac0de514487683d05c565235, type: 3}
   route: {fileID: 8068140604297976312, guid: c1eebfd7bc9a79b43a618556664e7c7e, type: 3}
   count: 0
   interval: 3

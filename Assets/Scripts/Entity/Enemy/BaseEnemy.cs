@@ -55,8 +55,10 @@ public class BaseEnemy : MonoBehaviour
             return;
         }
 
-        transform.Translate((_wayPoints[_pointIndex] - (Vector2) transform.position)
-            .normalized * Time.deltaTime * speed);
+        Vector2 moveDir = _wayPoints[_pointIndex] - (Vector2) transform.position;
+        if(moveDir.x != 0)
+            transform.localScale=new Vector3(-Mathf.Sign(moveDir.x), 1, 1);
+        transform.Translate(moveDir.normalized * Time.deltaTime * speed);
         if (Vector2.Distance(_wayPoints[_pointIndex], transform.position) < 0.02f)
         {
             _pointIndex++;

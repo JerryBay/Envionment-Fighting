@@ -8,6 +8,7 @@ public class WaveCreator
     private Queue<TimeStageWaveSingle> waveQue;
     private TimeStageWaveSingle curWave;
     private float timeOffset;
+    private bool needEvent;
 
     public WaveCreator()
     {
@@ -23,6 +24,7 @@ public class WaveCreator
         enemyCreators.Clear();
         waveQue.Clear();
         curWave = null;
+        EventManager.Dispath(GameEvent.MonsterReadyCreate, null);
     }
 
     /// <summary>
@@ -35,10 +37,20 @@ public class WaveCreator
             waveQue.Enqueue(timeStageWaves.timeStageWaves[i]);
         curWave = waveQue.Dequeue();
         timeOffset = (int) timeStage * GameDef.gameConfig.timeStageStepMinute * 60;
+        needEvent = true;
     }
 
     public void Update()
     {
+        if (needEvent && curWave != null)
+        {
+            object[] args = new object[curWave.waves.Length];
+            for (int i = 0; i < args.Length; i++)
+                args[i] = curWave.waves[i].route.ToString();
+            EventManager.Dispath(GameEvent.MonsterReadyCreate, args);
+            needEvent = false;
+        }
+
         if (enemyCreators.Count > 0)
         {
             for (int i = 0; i < enemyCreators.Count; i++)
@@ -70,7 +82,10 @@ public class WaveCreator
                 }
 
                 if (waveQue.Count > 0)
+                {
                     curWave = waveQue.Dequeue();
+                    needEvent = true;
+                }
                 else curWave = null;
             }
         }

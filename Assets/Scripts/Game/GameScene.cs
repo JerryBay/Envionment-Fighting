@@ -149,6 +149,7 @@ public class GameScene : MonoBehaviour
                 break;
             default:
                 waveCreator.Stop();
+                DestroyBuildingGhost();
                 isSelectBuildingPosition = false;
                 isSelectPositionBuilding = false;
                 EnemyManager.Instance.DestroyAll();
@@ -294,7 +295,7 @@ public class GameScene : MonoBehaviour
     private void OnManCountUpdateEvent(object[] args)
     {
         float count = (float) args[0];
-        if (count <= 0) // 人都去世了，game over吧！
+        if (count <= 0 && GameGlobal.GameStage == GameStage.Playing) // 人都去世了，game over吧！
         {
             EventManager.Dispath(GameEvent.GameStageUpdate, GameStage.Failure);
         }

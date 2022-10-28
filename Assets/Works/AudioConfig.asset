@@ -18,12 +18,12 @@ MonoBehaviour:
   backgroundMusicVolume: 1
   audioLibrary:
   - key: StartScene
-    clip: {fileID: 8300000, guid: 3ea3a65792e29f34fa5cb5828a5e4273, type: 3}
+    clip: {fileID: 8300000, guid: 9a23106af24450e4299f7f5620089648, type: 3}
     volume: 0.739
     type: 0
   - key: MainScene
-    clip: {fileID: 8300000, guid: 9a23106af24450e4299f7f5620089648, type: 3}
-    volume: 0.677
+    clip: {fileID: 8300000, guid: 3ea3a65792e29f34fa5cb5828a5e4273, type: 3}
+    volume: 0.6
     type: 0
   - key: CreateTower
     clip: {fileID: 8300000, guid: 9af0cc9224aefbc488e098fedd47ec09, type: 3}

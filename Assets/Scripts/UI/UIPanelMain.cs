@@ -25,6 +25,10 @@ public class UIPanelMain : UIPanelBase
     [Header("核心")] [SerializeField] private Text gameTime; // 游戏时长
     [SerializeField] private Text age; // 所处时代
 
+    [SerializeField] private GameObject way1;
+    [SerializeField] private GameObject way2;
+    [SerializeField] private GameObject way3;
+
     private static string[] timeStageNames = new[] {"农耕时代", "机械时代", "信息时代"};
 
     private void Update()
@@ -44,6 +48,7 @@ public class UIPanelMain : UIPanelBase
         // 注册ui事件
         EventManager.Register(GameEvent.GameTimeUpdate, OnGameTimeUpdateEvent);
         EventManager.Register(GameEvent.MoneyUpdate, OnMoneyUpdateEvent);
+        EventManager.Register(GameEvent.MonsterReadyCreate, OnMonsterReadyCreateEvent);
         EventManager.Register(GameEvent.UI_ProductivityUpdate, OnProductivityUpdateEvent);
         EventManager.Register(GameEvent.UI_PollutionUpdate, OnPollutionUpdateEvent);
         EventManager.Register(GameEvent.UI_PollutionValueUpdate, OnPollutionValueUpdateEvent);
@@ -61,6 +66,7 @@ public class UIPanelMain : UIPanelBase
         // 注销ui事件
         EventManager.Unregister(GameEvent.GameTimeUpdate, OnGameTimeUpdateEvent);
         EventManager.Unregister(GameEvent.MoneyUpdate, OnMoneyUpdateEvent);
+        EventManager.Unregister(GameEvent.MonsterReadyCreate, OnMonsterReadyCreateEvent);
         EventManager.Unregister(GameEvent.UI_ProductivityUpdate, OnProductivityUpdateEvent);
         EventManager.Unregister(GameEvent.UI_PollutionUpdate, OnPollutionUpdateEvent);
         EventManager.Unregister(GameEvent.UI_PollutionValueUpdate, OnPollutionValueUpdateEvent);
@@ -85,6 +91,25 @@ public class UIPanelMain : UIPanelBase
     private void OnMoneyUpdateEvent(object[] args)
     {
         money.text = args[0].ToString();
+    }
+
+    private void OnMonsterReadyCreateEvent(object[] args)
+    {
+        way1.SetActive(false);
+        way2.SetActive(false);
+        way3.SetActive(false);
+        if (args == null) return;
+        string routeName;
+        for (int i = 0; i < args.Length; i++)
+        {
+            routeName = args[i].ToString();
+            if(routeName.Contains("1"))
+                way1.SetActive(true);
+            else if(routeName.Contains("2"))
+                way2.SetActive(true);
+            else if(routeName.Contains("3"))
+                way3.SetActive(true);
+        }
     }
 
     private void OnProductivityUpdateEvent(object[] args)

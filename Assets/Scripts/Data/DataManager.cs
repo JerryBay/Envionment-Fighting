@@ -98,10 +98,8 @@ public class DataManager : SingletonMono<DataManager>
                 EventManager.Dispath(GameEvent.UI_PollutionValueUpdate,polluteTotal);
                 EventManager.Dispath(GameEvent.MoneyUpdate,coin);
                 break;
-            case GameStage.MainMenu:
-                AudioManager.Instance.PlayBGM("StartScene",true,true);
-                break;
             default:
+                AudioManager.Instance.PlayBGM("StartScene",true,true);
                 gameStart = false;
                 break;
         }
