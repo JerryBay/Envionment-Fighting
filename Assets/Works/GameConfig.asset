@@ -17,10 +17,13 @@ MonoBehaviour:
     buildings:
     - {fileID: 11400000, guid: 1f604f010a27a6e40b9866041560bea4, type: 2}
     - {fileID: 11400000, guid: 32ab2538f896bf8408a7fec1be6f86de, type: 2}
+    - {fileID: 11400000, guid: c365e1df65712154d9897b2deb795635, type: 2}
   - buildingType: 1
     buildings:
     - {fileID: 11400000, guid: 89a495e259eb12f47a216fff3a0ec9aa, type: 2}
+    - {fileID: 11400000, guid: 3eec7ac0fc130eb46b9a86b112667c59, type: 2}
     - {fileID: 11400000, guid: 3237354457000b54483f6533c38419fb, type: 2}
+    - {fileID: 11400000, guid: cf5e7982b6ecb094290e7f49e9b7050b, type: 2}
   timeStageWaves:
   - {fileID: 11400000, guid: a4e86dbfd46973048949ed0aba04f388, type: 2}
   - {fileID: 11400000, guid: ee0b97cd76a0a504785fbd235d051d70, type: 2}

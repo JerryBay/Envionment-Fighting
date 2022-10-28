@@ -88,6 +88,7 @@ public class DataManager : SingletonMono<DataManager>
                 gameStart = true;
                 gameTime = 0;
                 timeStage = TimeStage.Cultivation;
+                AudioManager.Instance.PlayBGM("MainScene",true,true);
                 EventManager.Dispath(GameEvent.GameTimeUpdate, 0);
 
                 EventManager.Dispath(GameEvent.UI_ProductivityUpdate,productivity);
@@ -96,6 +97,9 @@ public class DataManager : SingletonMono<DataManager>
                 EventManager.Dispath(GameEvent.UI_DeathManCountUpdate,peopleDead);
                 EventManager.Dispath(GameEvent.UI_PollutionValueUpdate,polluteTotal);
                 EventManager.Dispath(GameEvent.MoneyUpdate,coin);
+                break;
+            case GameStage.MainMenu:
+                AudioManager.Instance.PlayBGM("StartScene",true,true);
                 break;
             default:
                 gameStart = false;

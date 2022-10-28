@@ -272,7 +272,7 @@ public class GameScene : MonoBehaviour
             {
                 DataManager.Instance.coin -= nextLevel.cost;
                 EventManager.Dispath(GameEvent.MoneyUpdate, DataManager.Instance.coin);
-
+                AudioManager.Instance.PlayEffect("CreateTower",false);
                 BaseBuilding b = BuildingManager.Instance.Spawn(nextLevel, pos);
                 GridManager.Inst.BuildingSeize(gridKey, b);
                 EventManager.Dispath(GameEvent.UI_BuildingUpgradeComplate);
@@ -336,7 +336,7 @@ public class GameScene : MonoBehaviour
         {
             BaseBuilding building = BuildingManager.Instance.Spawn(config, gridKey.transform.position);
             GridManager.Inst.BuildingSeize(gridKey, building);
-
+            AudioManager.Instance.PlayEffect("CreateTower",false);
             DataManager.Instance.coin -= config.cost;
             EventManager.Dispath(GameEvent.MoneyUpdate, DataManager.Instance.coin);
             return true;
@@ -357,7 +357,7 @@ public class GameScene : MonoBehaviour
         {
             BaseBuilding building = BuildingManager.Instance.Spawn(config, gridKey.transform.position);
             GridManager.Inst.BuildingSeize(gridKey, building);
-
+            AudioManager.Instance.PlayEffect("CreateTower",false);
             DataManager.Instance.coin -= config.cost;
             EventManager.Dispath(GameEvent.MoneyUpdate, DataManager.Instance.coin);
             return true;
